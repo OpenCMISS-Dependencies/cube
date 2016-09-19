@@ -1,0 +1,52 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+## Convenience variable
+DOXYGEN_DOX_PLUGIN_DEV_SRC = $(SRC_ROOT)doc/doxygen-plugin-dev
+
+
+##--- Extra distribution files ----------------------------------------------
+
+
+##--- Doxygen-related targets -----------------------------------------------
+
+if HAVE_DOXYGEN
+
+PHONY_TARGETS += \
+    doxygen-plugin-dev
+
+
+doxygen-plugin-dev: $(USER_DOC_DIR)/plugin-dev/tags
+	echo "Create Gui Plugin developer documentation (run doxygen) "
+	@-cat doc/doxygen-plugin-dev.cfg  | doxygen -
+	@-_tmp=`pwd`; cd $(srcdir)/doc/dox-plugin-dev/images; pdflatex titlepage.tex; pdflatex titlepage.tex; cd $$_tmp
+	@-cp $(srcdir)/doc/dox-plugin-dev/images/*.pdf $(USER_DOC_DIR)/plugin-dev/pdf/.
+	@-cp $(srcdir)/doc/dox-plugin-dev/images/*.png $(USER_DOC_DIR)/plugin-dev/pdf/.
+	@-cp $(srcdir)/doc/dox-plugin-dev/scalasca.sty $(USER_DOC_DIR)/plugin-dev/pdf/.
+	@cd $(USER_DOC_DIR)/plugin-dev/pdf/; cp refman.tex refman.tex.orig; cat refman.tex.orig | grep -v " Index" | grep -v "hierarchy" | grep -v "annotated" > refman.tex
+	@cd $(USER_DOC_DIR)/plugin-dev/pdf/; cp classPluginServices.tex classPluginServices.tex.orig; cat classPluginServices.tex.orig | sed 's/label{/mylabel{/g' > classPluginServices.tex
+	@-echo "Create Cube GUI Plugin developer documentation (run pdflatex)"
+	@-_tmp=`pwd`; cd $(USER_DOC_DIR)/plugin-dev/pdf/; make; cd $$_tmp ; cp $(USER_DOC_DIR)/plugin-dev/pdf/refman.pdf $(srcdir)/doc/CubeGuiPluginDeveloperGuide.pdf
+
+	
+$(USER_DOC_DIR)/plugin-dev/tags:
+	mkdir -p $(USER_DOC_DIR)/plugin-dev/tags
+
+
+	
+endif HAVE_DOXYGEN

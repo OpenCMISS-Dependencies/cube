@@ -1,0 +1,81 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.score-p.org/                                    ##
+##  SCALASCA    http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2015                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+FRONTEND_DIR=
+FRONTEND_LIBZ_LD="@FRONTEND_LIBZ_LD@"
+FRONTEND_LIBZ_HEADERS="@FRONTEND_LIBZ_HEADERS@"
+
+
+
+CUBE_HEADERS_DIR="@includedir@/cube"
+
+CUBE_LIBS_DIR="@libdir@/$FRONTEND_DIR"
+CUBE_LIBRARY="-lcube4 $FRONTEND_LIBZ_LD"
+CUBE_SHARED_LIBRARY="-lcube4 $FRONTEND_LIBZ_LD"
+CUBE_LDFLAGS="-L$CUBE_LIBS_DIR $CUBE_LIBRARY "
+CUBE_SHLDFLAGS="-L$CUBE_LIBS_DIR -Wl,-rpath -Wl,$CUBE_LIBS_DIR $CUBE_SHARED_LIBRARY"
+CUBE_CXXFLAGS="-I$CUBE_HEADERS_DIR $FRONTEND_LIBZ_HEADERS"
+
+GUI_HEADERS_DIR="@includedir@/cubegui"
+
+GUI_LIBS_DIR="@libdir@/$FRONTEND_DIR"
+GUI_LIBRARY="-lcube4gui"
+GUI_SHARED_LIBRARY="-lcube4gui"
+GUI_LDFLAGS="-L$GUI_LIBS_DIR $GUI_LIBRARY "
+GUI_SHLDFLAGS="-L$GUI_LIBS_DIR -Wl,-rpath -Wl,$GUI_LIBS_DIR $GUI_SHARED_LIBRARY"
+GUI_CXXFLAGS="-I$GUI_HEADERS_DIR $FRONTEND_LIBZ_HEADERS"
+
+
+FRONTEND_CUBEW_LIBS_DIR=@libdir@/$FRONTEND_DIR
+FRONTEND_CUBEW_LD_LIB="-lcube4w -lcubewriter4"
+FRONTEND_CUBEW_SH_LD_LIB="-lcube4w -lcubewriter4"
+FRONTEND_CUBEW_LIBRARY="-lcube4w -lcubewriter4"
+FRONTEND_CUBEW_SHARED_LIBRARY="-lcube4w -lcubewriter4"
+FRONTEND_CUBEW_HEADERS_DIR=@includedir@/cubew
+FRONTEND_CUBEW_LDFLAGS="-L$FRONTEND_CUBEW_LIBS_DIR $FRONTEND_CUBEW_LD_LIB $FRONTEND_LIBZ_LD"
+FRONTEND_CUBEW_SHLDFLAGS="-L$FRONTEND_CUBEW_LIBS_DIR -Wl,-rpath -Wl,$FRONTEND_CUBEW_LIBS_DIR  $FRONTEND_CUBEW_LD_LIB $FRONTEND_LIBZ_LD"
+FRONTEND_CUBEW_CXXFLAGS="-I$FRONTEND_CUBEW_HEADERS_DIR $FRONTEND_LIBZ_HEADERS"
+
+FRONTEND_APP_CUBEW_CFLAGS="-I$FRONTEND_CUBEW_HEADERS_DIR"
+FRONTEND_APP_CUBE_CXXFLAGS=$CUBE_CXXFLAGS
+FRONTEND_APP_ADD_LDFLAGS="-lm"
+FRONTEND_APP_ADD_CXXFLAGS=
+
+if test "x@MSG_FRONTEND_COMPRESSION@" = "xreadonly" || test "x@MSG_FRONTEND_COMPRESSION@" = "xfull"; then
+FRONTEND_APP_ADD_CXXFLAGS=" $FRONTEND_LIBZ_HEADERS "
+FRONTEND_APP_ADD_LDFLAGS+=" $FRONTEND_LIBZ_LD -lz "
+fi
+FRONTEND_CXX="@FRONTEND_CXX@"
+FRONTEND_CC="@CC@"
+
+
+QMAKE='@QMAKE@'
+QT_SPECS='@QT_SPECS@'
+compiler_cxx='@cxx_compiler@'
+QT_CPPFLAGS='@QT_CPPFLAGS@'
+QT_CXXFLAGS='@QT_CXXFLAGS@'
+QT_LDFLAGS='@QT_LDFLAGS@'
+QT_LIBS='@QT_LIBS@'
+QT_DEFINES='@QT_DEFINES@'
+QT_VERSION='@QT_VERSION@'
+QT_INCPATH='@QT_INCPATH@'
+MOC='@MOC@'
+RCC='@RCC@'
+UIC='@UIC@'
+
+

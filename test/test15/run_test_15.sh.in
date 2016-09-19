@@ -1,0 +1,48 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+TEMPLATE_DIR="@abs_srcdir@"
+TEMPLATE1_CUBE="$TEMPLATE_DIR/template1.cube"
+TEMPLATE2_CUBE="$TEMPLATE_DIR/template2.cube"
+
+
+
+echo "##########################################################################"
+echo "# Run test 15 : Check the tool \"cube_merge\" "
+echo "#"
+echo "##########################################################################"
+mkdir -p tests
+cd tests
+echo "=====> Merge created cube and saved template ..."
+../cube_merge $TEMPLATE1_CUBE example3.cubex 
+result1=$?
+echo "=====> Compare result with saved template"
+../cube_cmp merge.cubex $TEMPLATE2_CUBE
+result2=$?
+echo "=====> Transform merging result into cube3 ..."
+../cube4to3 merge.cubex
+result3=$?
+echo "=====> Compare resukt and template usig diff  ..."
+../cube_cmp merge.cube $TEMPLATE2_CUBE
+result4=$?
+cd ..
+if [[ $result1 -ne 0  || $result2 -ne 0 || $result3 -ne 0 || $result4 -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above and tests/test15.diff for more details."
+exit -1
+fi

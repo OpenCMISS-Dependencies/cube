@@ -1,0 +1,93 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+CUBEW4_INC_PATH = -I$(srcdir)/../src/cubew/
+
+##if !WITHOUT_C_WRITER
+
+
+lib_LTLIBRARIES += libcubewriter4.la
+libcubewriter4_la_SOURCES =           \
+    $(SRC_ROOT)src/cubew/cubew_cubew.c   \
+    $(SRC_ROOT)src/cubew/cubew_cubew.h   
+
+#libcubewriter4_la_LIBADD = $(BACKEND_LIBZ) -lz
+libcubewriter4_la_LDFLAGS = -version-info @LIBRARY_INTERFACE_VERSION@
+
+lib_LTLIBRARIES += libcube4w.la
+libcube4w_la_SOURCES =                       \
+    $(SRC_ROOT)src/cubew/cubew_cartesian.c   \
+    $(SRC_ROOT)src/cubew/cubew_cnode.c       \
+    $(SRC_ROOT)src/cubew/cubew_cube.c        \
+    $(SRC_ROOT)src/cubew/cubew_system_tree_node.c     \
+    $(SRC_ROOT)src/cubew/cubew_location_group.c     \
+    $(SRC_ROOT)src/cubew/cubew_location.c     \
+    $(SRC_ROOT)src/cubew/cubew_metric.c      \
+    $(SRC_ROOT)src/cubew/cubew_region.c      \
+    $(SRC_ROOT)src/cubew/cubew_services.c    \
+    $(SRC_ROOT)src/cubew/cubew_compat_platform.c \
+    $(SRC_ROOT)src/cubew/cubew_meta_data_writer.c \
+    $(SRC_ROOT)src/cubew/cubew_cartesian.h   \
+    $(SRC_ROOT)src/cubew/cubew_cnode.h       \
+    $(SRC_ROOT)src/cubew/cubew_cube.h        \
+    $(SRC_ROOT)src/cubew/cubew_system_tree_node.h     \
+    $(SRC_ROOT)src/cubew/cubew_location_group.h     \
+    $(SRC_ROOT)src/cubew/cubew_location.h     \
+    $(SRC_ROOT)src/cubew/cubew_metric.h      \
+    $(SRC_ROOT)src/cubew/cubew_region.h      \
+    $(SRC_ROOT)src/cubew/cubew_services.h    \
+    $(SRC_ROOT)src/cubew/cubew_types.h       \
+    $(SRC_ROOT)src/cubew/cubew_vector.h      \
+    $(SRC_ROOT)src/cubew/cubew_file_layout_embedded.h \
+    $(SRC_ROOT)src/cubew/cubew_report_layouts.h       \
+    $(SRC_ROOT)src/cubew/cubew_tar_writing.h          \
+    $(SRC_ROOT)src/cubew/cubew_report_layouts_types.h \
+    $(SRC_ROOT)src/cubew/cubew_compat_platform.h \
+    $(SRC_ROOT)src/cubew/cubew_meta_data_writer.h \
+    $(SRC_ROOT)src/cubew/cubew_file_layout_embedded.c \
+    $(SRC_ROOT)src/cubew/cubew_tar_writing.c 
+
+libcube4w_la_CFLAGS = $(COMPRESSION) $(BACKEND_LIBZ_HEADERS)
+libcube4w_la_LDFLAGS = -version-info @LIBRARY_INTERFACE_VERSION@
+
+EXTRA_DIST += \
+    $(SRC_ROOT)src/cubew/COPYING
+    
+
+
+dist_cubew_headers_HEADERS +=                \
+    $(SRC_ROOT)src/cubew/cubew_cubew.h       \
+    $(SRC_ROOT)src/cubew/cubew_compat_platform.h      \
+    $(SRC_ROOT)src/cubew/cubew_cartesian.h   \
+    $(SRC_ROOT)src/cubew/cubew_cnode.h       \
+    $(SRC_ROOT)src/cubew/cubew_cube.h        \
+    $(SRC_ROOT)src/cubew/cubew_system_tree_node.h     \
+    $(SRC_ROOT)src/cubew/cubew_location_group.h     \
+    $(SRC_ROOT)src/cubew/cubew_location.h     \
+    $(SRC_ROOT)src/cubew/cubew_metric.h      \
+    $(SRC_ROOT)src/cubew/cubew_region.h      \
+    $(SRC_ROOT)src/cubew/cubew_services.h    \
+    $(SRC_ROOT)src/cubew/cubew_types.h       \
+    $(SRC_ROOT)src/cubew/cubew_vector.h      \
+    $(SRC_ROOT)src/cubew/cubew_file_layout_embedded.h   \
+    $(SRC_ROOT)src/cubew/cubew_report_layouts.h       \
+    $(SRC_ROOT)src/cubew/cubew_tar_writing.h          \
+    $(SRC_ROOT)src/cubew/cubew_meta_data_writer.h          \
+    $(SRC_ROOT)src/cubew/cubew_report_layouts_types.h
+
+
+##endif

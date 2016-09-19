@@ -1,0 +1,47 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+## Convenience variable
+DOXYGEN_DOX_DERIVED_METRICS_SRC = $(SRC_ROOT)doc/doxygen-derived-metrics
+
+
+##--- Extra distribution files ----------------------------------------------
+
+
+
+##--- Doxygen-related targets -----------------------------------------------
+
+if HAVE_DOXYGEN
+
+PHONY_TARGETS += \
+    doxygen-derived-metrics
+
+
+doxygen-derived-metrics: $(USER_DOC_DIR)/derived-metrics/tags
+	echo "Create Cube Derived Metrics documentation (run doxygen) "
+	@-cat doc/doxygen-derived-metrics.cfg  | doxygen -
+	@-_tmp=`pwd`; cd $(srcdir)/doc/dox-derived-metrics/images; pdflatex titlepage.tex; pdflatex titlepage.tex; cd $$_tmp
+	@-cp $(srcdir)/doc/dox-derived-metrics/images/*.pdf $(USER_DOC_DIR)/derived-metrics/pdf/.
+	@-cp $(srcdir)/doc/dox-derived-metrics/scalasca.sty $(USER_DOC_DIR)/derived-metrics/pdf/.
+	@-echo "Create  Cube Derived Metrics documentation  (run pdflatex)"
+	@-_tmp=`pwd`; cd $(USER_DOC_DIR)/derived-metrics/pdf/; make; cd $$_tmp ; cp $(USER_DOC_DIR)/derived-metrics/pdf/refman.pdf $(srcdir)/doc/CubeDerivedMetrics.pdf
+
+$(USER_DOC_DIR)/derived-metrics/tags:
+	mkdir -p $(USER_DOC_DIR)/derived-metrics/tags
+	
+endif HAVE_DOXYGEN

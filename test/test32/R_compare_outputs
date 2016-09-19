@@ -1,0 +1,25 @@
+r_file = commandArgs(trailingOnly=T)[2];
+csv2_file = commandArgs(trailingOnly=T)[3];
+#load R output file
+ne = new.env()
+file_r <- load(r_file,env=ne);
+#load CSV2 file and convert to numerics
+file_csv2 <- as.matrix(read.csv2(csv2_file,sep=",",check.names=F));
+new_csv <- matrix(as.numeric(unlist(file_csv2)),nrow=nrow(file_csv2));
+cols <- colnames(file_csv2);
+
+#iterate over columns
+flag <- T
+for(n in 1:length(cols)) { 
+	if(cols[n] != "CNode ID" && cols[n] != "Thread ID" && cols[n] != "Region ID") { 
+		{if(cols[n] != "Subroutines") Rmatrix <- get(cols[n],envir=ne) else Rmatrix <- get(paste(cols[n-1],cols[n],sep="_"),envir=ne)}; 
+		CSVmatrix <- matrix(new_csv[,n],nrow=nrow(Rmatrix),byrow=T);  
+		if(!isTRUE(all.equal(Rmatrix,CSVmatrix))){ 
+			{if(cols[n] != "Subroutines") flag <- cols[n] else flag <- paste(cols[n-1],cols[n],sep="_")};
+			break
+		} 
+	} 
+}
+
+#test
+cat(flag)

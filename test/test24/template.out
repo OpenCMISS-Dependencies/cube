@@ -1,0 +1,32 @@
+Name not empty or UNKNOWN ... 
+[32m    Passed:  168 / 169[39m
+[31m    Failed:  1 / 169[39m
+[33m    Skipped: 0 / 169[39m
+  No ANONYMOUS functions ... 
+  [32m    Passed:  169 / 169[39m
+  [31m    Failed:  0 / 169[39m
+  [33m    Skipped: 0 / 169[39m
+  No TRUNCATED functions ... 
+  [32m    Passed:  169 / 169[39m
+  [31m    Failed:  0 / 169[39m
+  [33m    Skipped: 0 / 169[39m
+  File name not empty ... 
+  [32m    Passed:  169 / 169[39m
+  [31m    Failed:  0 / 169[39m
+  [33m    Skipped: 0 / 169[39m
+    Proper line numbers ... 
+    [32m    Passed:  0 / 169[39m
+    [31m    Failed:  169 / 169[39m
+    [33m    Skipped: 0 / 169[39m
+  No TRACING outside Init and Finalize ... 
+  [32m    Passed:  298 / 300[39m
+  [31m    Failed:  2 / 300[39m
+  [33m    Skipped: 0 / 300[39m
+No negative inclusive metrics ... 
+[32m    Passed:  768000 / 768000[39m
+[31m    Failed:  0 / 768000[39m
+[33m    Skipped: 0 / 768000[39m
+No negative exclusive metrics ... 
+[32m    Passed:  576000 / 768000[39m
+[31m    Failed:  192000 / 768000[39m
+[33m    Skipped: 0 / 768000[39m

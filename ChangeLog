@@ -1,0 +1,145 @@
+Version: 4.3.4
+Notes:
+    - Various bug fixes in library and GUI.
+    - CUBE_DEBUG and CUBEPL_VERBOSE_METRICS set CubePL engine into verbose mode. 
+      See installation documentation.
+    - Added support for multiple plugin search directories, via env variable and via GUI setting.
+    - Allow to specify colors of the selected item in the tree panel of a Cube GUI.
+    - Source code viewer allows search within the displayed text. 
+    - Enhanced the start windows ot the Cube GUI. 
+    - Report uset Qt version in the "About" dialog of a GUI.
+    - Improved the Qt detection steps while the configure time.
+    - Cube tools do not append wrongly the .cubex extension.
+    - Fixes in CubePL engine: 
+      -- support for metric::call::<uniq_name>;
+      -- fixed seg fault if the metric "rowwise=false";
+      -- fixed seg fault while metric::set of unknown metric;
+      -- reference to a metric in CubePL Init section doesn't crash anymore;
+      -- "?" within a regex is not ignored anymore.
+    - Remapper doesn't unhide "omp" metrics, if no OpenMp region detected, but -s option 
+    is provided.
+    - Fixed a seg fault if Cube tries to read a non-Cube file, like .txt.
+    - Provide examples of typical cube files.
+
+Version: 4.3.3
+    - Various bug fixes in library.
+    - Using ScoreP for Library instrumentation for the automatic performance benchmarking.
+    - Extended list of the environment (CUBE_TMPDIR, CUBE_TEMP, CUBE_TMP) variables for storing the temporary data.
+    - Improved performance of the multiplication in CubePL engine (short evaluation).
+    - Bug fixes in CubePL engine related to the assignment "=".
+    - Manual initialization of a plugin after GUI start is possible.
+    - Extended marker API. 
+    - Plugin can define an icon as a marker.
+    - Improved automatic CubePL keyword suggestion while creation of a derived metric.
+    - Improved plugins search strategy.
+    - Fixed support of "if - elseif (x) - else " construction in CubePL.
+    - Added support for comments in CubePL.
+    - Fixed bug in "lowercase" and "uppercase" handling in CubePL.
+    - Improvd memory footprint of cube_dump and cube_remap2.
+    - Use rowwise calls in cube_cmp, cube_diff and other tools.
+
+Release 4.3.2
+    - Various bug fixes.
+    - Reimplemented calculation routines using loops instead of recursion.
+    - Removed Cube Java Reader from the common package. 
+      It is being distributed separately.
+    - Fixed issue with the ":" in the metric name.
+    - Added genericUserAction to PluginServices.u
+    - Fixed handling of Online Documentation.
+    - Improvements in Advanced Color Map Plug-In.
+      - Inversion of color map.
+      - Storing user defined color maps in settings.
+    - Reintroduced "cube_derive" tool in the Cube distribution.
+    - Extended status bar. With a mouse click one can inspect a log of recent events. 
+    - Improved stability of plugins "Heatmap" and "Barplot".
+
+Release 4.3.1
+    - Various bug fixes.
+    - Added control over data load strategy.
+    - Added extended color maps..
+    - Trees in gui can be explored using keyboard.
+    
+Release 4.3
+    - Added preloading mechanism into c++ library.
+    - Replaced internal container map by vector.
+    - Metrics with build in data type like int or double perform algebra using build in types.
+      Metrics with complex data type like histogramm or scale function perform algebra using general object.
+    - Extended Cube API to support rowwise data processing.
+    - Extended caching mechanism to support buildin data types and data rows.
+    - Added control over I/O buffer size.
+    - Added support for parameter based metric types.
+    - Various bug fixes in library and GUI.
+    - Extended region definition by "paradigm" and "role".
+    - Added plugin infrastructure in GUI.
+    - Reimplemented various parts of GUI as a plugin.
+    - Added plugins "BarPlot" and "Heatmap" for the analysis of dynamic performance.
+    - Added support of "histogram" as a metric type with a proper algebra.
+    - Extended support for "ghost" metrics.
+    - Added initial support for Intel MIC (see INSTALL or CubeInstall.pdf).
+    - Added calls "env", "cube::metric::set" and "cube::metric::get" to CubePL.
+    - Extended CubePL with teh ability to redefine operator"+" and operator "-" in the aggregation formula.
+    - cube_dump tool exports the data in native R matric format.
+    - Support for context free plugins.
+
+    
+Release 4.2.3   
+    - Various bug fixes in library and GUI.
+    - Various memory leaks fixes in library.
+    - Minor performance improvments.
+    - Adjusted scorep.spec file to the new ompregion description "openmp".
+    - Examples are being installed now into share/doc/cube/example.
+
+Release 4.2.2 	
+    - Implemented aggregation of loop iterations in GUI.
+    - Added support for different CubePL engine versions.
+    - Added support for Fujitsu K computer.
+    - Extended cube_dump utility with flexible call path selection and an additional CSV layout.
+    - Support for Qt5.
+    - Added to GUI a split of the 1-D topology into 2-D.
+    - Various bug fixes as well as performance and usability improvements.
+
+Release 4.2.1
+    - Enabled zlib compression of metadata.
+    - Added support for storing attributes for all metadata items.
+    - Improved zooming in topology view (zoom into selected planes).
+    - Added multiple selection in topology.
+    - Improved selection of elements in system tree.
+    - Improved performance of the clusters' expansion.
+    - Changed default behavior to build Java reader if Java compiler can be found.
+    - Various bug fixes as well as performance and usability improvements.
+
+Release 4.2
+    - Significant amount of code refactoring.
+    - Bug fixes.
+    - Performance improvements.
+    - Support for flexible system tree.
+    - Improvements in build system.
+    - Extension of cube-config tool.
+    - Support for clustering.
+    - Improvements in performance of cube_remp2 tool.
+    - Refactoring of CubePL engine.
+
+Release 4.1.6
+    - Bug fixes.
+    - Improved Qt library detection.
+
+Release 4.1.5
+    - Bug fixes.
+    - Added support of scaling behavior function as a performance value.
+    - Added support for PGI and SUN Studio compiler (without GUI).
+    - Improved export functionality of cube_dump tool.
+
+Release 4.1.4
+    - Bug fixes.
+    - Improved internal architecture of the topology widget to increase maintainability.
+    - Improved view of the topology domains.
+    - Improved build system, removed warnings and bugs for POWER6.
+    - Added cube syntax version check.
+
+Release 4.1.3
+    - Bug fixes.
+    - Added highlighting schema for Cpp/Fortran/CubePL sources.
+    - Improved the detection of the source code place for the source code editor.
+    - Enhanced the tool cube_dump. It is able to display flat tree and perform aggregation over threads.
+    - Added support for Windows.
+ 

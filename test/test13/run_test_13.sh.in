@@ -1,0 +1,40 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+TEMPLATE_DIR="@abs_srcdir@"
+TEMPLATE_CUBE="$TEMPLATE_DIR/template.cube"
+
+echo "##########################################################################"
+echo "# Run test 13 : Check the tool \"cube_cut\" "
+echo "#"
+echo "##########################################################################"
+echo "Perform cut cube_cut -p its=5 -r initgeom  example3.cubex."
+mkdir -p tests
+cd tests
+../cube_cut -p its=5 -r initgeom  example3.cubex
+result1=$?
+echo "Compare with template ..."
+../cube_cmp cut.cubex $TEMPLATE_CUBE
+result2=$?
+cd ..
+if [[ $result1 -ne 0 || $result2 -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above for more details."
+exit -1
+fi

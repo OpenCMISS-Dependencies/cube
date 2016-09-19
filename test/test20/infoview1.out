@@ -1,0 +1,301 @@
+|            Time | Diff-Calltree
+|       3475200.0 |  * UNKNOWN
+|       60544.000 |  |  * TRACING
+|       18944.000 |  |  |  * MPI_Accumulate
+|       2208.0000 |  |  |  |  * MPI_Allgather
+|       2272.0000 |  |  |  |  * MPI_Allgatherv
+|       2336.0000 |  |  |  |  * MPI_Allreduce
+|       2400.0000 |  |  |  |  * MPI_Alltoall
+|       2464.0000 |  |  |  |  * MPI_Alltoallv
+|       2528.0000 |  |  |  |  * MPI_Alltoallw
+|       2592.0000 |  |  |  |  * MPI_Barrier
+|       39520.000 |  |  |  * MPI_Bcast
+|       2720.0000 |  |  |  |  * MPI_Bsend
+|       2784.0000 |  |  |  |  * MPI_Bsend_init
+|       2848.0000 |  |  |  |  * MPI_Cancel
+|       2912.0000 |  |  |  |  * MPI_Cart_create
+|       2976.0000 |  |  |  |  * MPI_Comm_create
+|       3040.0000 |  |  |  |  * MPI_Comm_dup
+|       3104.0000 |  |  |  |  * MPI_Comm_free
+|       3168.0000 |  |  |  |  * MPI_Comm_group
+|       3232.0000 |  |  |  |  * MPI_Comm_remote_group
+|       3296.0000 |  |  |  |  * MPI_Comm_split
+|       3360.0000 |  |  |  |  * MPI_Exscan
+|       3424.0000 |  |  |  |  * MPI_File_close
+|       143360.00 |  |  * MPI_File_delete
+|       38400.000 |  |  |  * MPI_File_get_amode
+|       3616.0000 |  |  |  |  * MPI_File_get_atomicity
+|       3680.0000 |  |  |  |  * MPI_File_get_byte_offset
+|       3744.0000 |  |  |  |  * MPI_File_get_group
+|       3808.0000 |  |  |  |  * MPI_File_get_info
+|       3872.0000 |  |  |  |  * MPI_File_get_position
+|       3936.0000 |  |  |  |  * MPI_File_get_position_shared
+|       4000.0000 |  |  |  |  * MPI_File_get_size
+|       4064.0000 |  |  |  |  * MPI_File_get_type_extent
+|       4128.0000 |  |  |  |  * MPI_File_get_view
+|       8448.0000 |  |  |  * MPI_File_iread
+|       4256.0000 |  |  |  |  * MPI_File_iread_at
+|       31584.000 |  |  |  * MPI_File_iread_shared
+|       4384.0000 |  |  |  |  * MPI_File_iwrite
+|       4448.0000 |  |  |  |  * MPI_File_iwrite_at
+|       4512.0000 |  |  |  |  * MPI_File_iwrite_shared
+|       4576.0000 |  |  |  |  * MPI_File_open
+|       4640.0000 |  |  |  |  * MPI_File_preallocated
+|       4704.0000 |  |  |  |  * MPI_File_read
+|       61440.000 |  |  |  * MPI_File_read_all
+|       4832.0000 |  |  |  |  * MPI_File_read_all_begin
+|       4896.0000 |  |  |  |  * MPI_File_real_all_end
+|       4960.0000 |  |  |  |  * MPI_File_read_at
+|       5024.0000 |  |  |  |  * MPI_File_read_at_all
+|       5088.0000 |  |  |  |  * MPI_File_read_at_all_begin
+|       5152.0000 |  |  |  |  * MPI_File_read_at_all_end
+|       5216.0000 |  |  |  |  * MPI_File_read_ordered
+|       5280.0000 |  |  |  |  * MPI_File_read_ordered_begin
+|       5344.0000 |  |  |  |  * MPI_File_read_ordered_end
+|       5408.0000 |  |  |  |  * MPI_File_read_shared
+|       5472.0000 |  |  |  |  * MPI_File_seek
+|       102816.00 |  |  * MPI_File_seek_shared
+|       52704.000 |  |  |  * MPI_File_set_atomicity
+|       5664.0000 |  |  |  |  * MPI_File_set_info
+|       5728.0000 |  |  |  |  * MPI_File_set_size
+|       5792.0000 |  |  |  |  * MPI_File_set_view
+|       5856.0000 |  |  |  |  * MPI_File_sync
+|       5920.0000 |  |  |  |  * MPI_file_write
+|       5984.0000 |  |  |  |  * MPI_File_write_all
+|       6048.0000 |  |  |  |  * MPI_File_write_all_begin
+|       6112.0000 |  |  |  |  * MPI_File_write_all_end
+|       6176.0000 |  |  |  * MPI_File_write_at_all
+|       38400.000 |  |  |  * MPI_File_write_at_all_begin
+|       6304.0000 |  |  |  |  * MPI_File_write_at_all_end
+|       6368.0000 |  |  |  |  * MPI_File_write_ordered
+|       6432.0000 |  |  |  |  * MPI_File_write_ordered_begin
+|       6496.0000 |  |  |  |  * MPI_File_write_ordered_end
+|       6560.0000 |  |  |  |  * MPI_File_write_shared
+|       663040.00 |  |  * MPI_Finalize
+|       20256.000 |  |  |  * MPI_Gather
+|       6752.0000 |  |  |  |  * mPI_Gatherv
+|       6816.0000 |  |  |  |  * MPI_Get
+|       56832.000 |  |  |  * MPI_Graph_create
+|       6944.0000 |  |  |  |  * MPI_Group_difference
+|       7008.0000 |  |  |  |  * MPI_Group_excl
+|       7072.0000 |  |  |  |  * MPI_Group_ free
+|       7136.0000 |  |  |  |  * MPI_Group_incl
+|       7200.0000 |  |  |  |  * MPI_Group_intersection
+|       7264.0000 |  |  |  |  * MPI_Group_range_excl
+|       7328.0000 |  |  |  |  * MPI_Group_range_incl
+|       101088.00 |  |  |  * MPI_Group_union
+|       7456.0000 |  |  |  |  * MPI_Ibsend
+|       7520.0000 |  |  |  |  * MPI_Init
+|       7584.0000 |  |  |  |  * MPI_Init_thread
+|       7648.0000 |  |  |  |  * MPI_Intercomm_create
+|       7712.0000 |  |  |  |  * MPI_Intercomm_merge
+|       7776.0000 |  |  |  |  * MPI_Irecv
+|       7840.0000 |  |  |  |  * MPI_Irsend
+|       7904.0000 |  |  |  |  * MPI_Isend
+|       7968.0000 |  |  |  |  * MPI_Issend
+|       8032.0000 |  |  |  |  * MPI_Probe
+|       8096.0000 |  |  |  |  * MPI_Put
+|       8160.0000 |  |  |  |  * MPI_Recv
+|       41760.000 |  |  |  * MPI_Recv_init
+|       8288.0000 |  |  |  |  * MPI_Reduce
+|       8352.0000 |  |  |  |  * MPI_Reduce_scatter
+|       8416.0000 |  |  |  |  * MPI_Request_free
+|       8480.0000 |  |  |  |  * MPI_Rsend
+|       88320.000 |  |  |  * MPI_Rsend_init
+|       8608.0000 |  |  |  |  * MPI_Scan
+|       8672.0000 |  |  |  |  * MPI_Scatter
+|       8736.0000 |  |  |  |  * MPI_Scatterv
+|       8800.0000 |  |  |  |  * MPI_Send
+|       8864.0000 |  |  |  |  * MPI_Send_init
+|       8928.0000 |  |  |  |  * MPI_Sendrecv
+|       8992.0000 |  |  |  |  * MPI_Sendrecv_replace
+|       9056.0000 |  |  |  |  * MPI_Ssend
+|       9120.0000 |  |  |  |  * MPI_Ssend_init
+|       18432.000 |  |  |  * MPI_Start
+|       9248.0000 |  |  |  |  * MPI_Startall
+|       66528.000 |  |  |  * MPI_Test
+|       9376.0000 |  |  |  |  * MPI_Testall
+|       9440.0000 |  |  |  |  * MPI_Testany
+|       9504.0000 |  |  |  |  * MPI_Testsome
+|       9568.0000 |  |  |  |  * MPI_Wait
+|       9632.0000 |  |  |  |  * MPI_Waitall
+|       9696.0000 |  |  |  |  * MPI_Waitany
+|       121344.00 |  |  |  * MPI_Waitsome
+|       9824.0000 |  |  |  |  * MPI_Win_complete
+|       9888.0000 |  |  |  |  * MPI_Win_create
+|       9952.0000 |  |  |  |  * MPI_Win_fence
+|       10016.000 |  |  |  |  * MPI_Win_free
+|       10080.000 |  |  |  |  * MPI_Win_lock
+|       10144.000 |  |  |  |  * MPI_Win_post
+|       10208.000 |  |  |  |  * MPI_Win_start
+|       10272.000 |  |  |  |  * MPI_Win_test
+|       10336.000 |  |  |  |  * MPI_Win_unlock
+|       10400.000 |  |  |  |  * MPI_Win_wait
+|       10464.000 |  |  |  |  * PARALLEL
+|       42496.000 |  |  |  * driver
+|       10592.000 |  |  |  |  * task_init
+|       10656.000 |  |  |  |  * bcast_init
+|       10720.000 |  |  |  |  * barriere_sync
+|       99360.000 |  |  |  * read_input
+|       10848.000 |  |  |  |  * bcast_real
+|       10912.000 |  |  |  |  * decomp
+|       10976.000 |  |  |  |  * inner_auto
+|       11040.000 |  |  |  |  * inner
+|       11104.000 |  |  |  |  * initialize
+|       11168.000 |  |  |  |  * initxs
+|       11232.000 |  |  |  |  * initsnc
+|       11296.000 |  |  |  |  * octant
+|       11360.000 |  |  * initgeom
+|       520864.00 |  |  * timers
+|       129888.00 |  |  |  * its=1                    
+|       11552.000 |  |  |  |  * source
+|       11616.000 |  |  |  |  * sweep
+|       11680.000 |  |  |  |  * rcv_real
+|       11744.000 |  |  |  |  * snd_real
+|       11808.000 |  |  |  |  * global_init_sum
+|       11872.000 |  |  |  |  * flux_err
+|       11936.000 |  |  |  |  * global_real_max
+|       12000.000 |  |  |  |  * its=2                        
+|       12064.000 |  |  |  |  * its=3                        
+|       12128.000 |  |  |  |  * its=4                        
+|       36768.000 |  |  |  * its=5                        
+|       12256.000 |  |  |  |  * its=6                        
+|       12320.000 |  |  |  |  * its=7                        
+|       100864.00 |  |  |  * its=8                        
+|       12448.000 |  |  |  |  * its=9                        
+|       12512.000 |  |  |  |  * its=10                        
+|       12576.000 |  |  |  |  * its=11                       
+|       12640.000 |  |  |  |  * its=12                        
+|       12704.000 |  |  |  |  * global_real_sum
+|       12768.000 |  |  |  |  * task_end
+|       12832.000 |  |  |  |  * UNKNOWN
+|       172640.00 |  |  |  * TRACING
+|       12960.000 |  |  |  |  * MPI_Accumulate
+|       13024.000 |  |  |  |  * MPI_Allgather
+|       13088.000 |  |  |  |  * MPI_Allgatherv
+|       13152.000 |  |  |  |  * MPI_Allreduce
+|       13216.000 |  |  |  |  * MPI_Alltoall
+|       13280.000 |  |  |  |  * MPI_Alltoallv
+|       13344.000 |  |  |  |  * MPI_Alltoallw
+|       13408.000 |  |  |  |  * MPI_Barrier
+|       13472.000 |  |  |  |  * MPI_Bcast
+|       13536.000 |  |  |  |  * MPI_Bsend
+|       13600.000 |  |  |  |  * MPI_Bsend_init
+|       13664.000 |  |  |  |  * MPI_Cancel
+|       69280.000 |  |  |  * MPI_Cart_create
+|       13792.000 |  |  |  |  * MPI_Comm_create
+|       13856.000 |  |  |  |  * MPI_Comm_dup
+|       13920.000 |  |  |  |  * MPI_Comm_free
+|       13984.000 |  |  |  |  * MPI_Comm_group
+|       885248.00 |  |  * MPI_Comm_remote_group
+|       28288.000 |  |  |  * MPI_Comm_split
+|       14176.000 |  |  |  |  * MPI_Exscan
+|       101024.00 |  |  |  * MPI_File_close
+|       14304.000 |  |  |  |  * MPI_File_delete
+|       14368.000 |  |  |  |  * MPI_File_get_amode
+|       14432.000 |  |  |  |  * MPI_File_get_atomicity
+|       14496.000 |  |  |  |  * MPI_File_get_byte_offset
+|       14560.000 |  |  |  |  * MPI_File_get_group
+|       14624.000 |  |  |  |  * MPI_File_get_info
+|       180480.00 |  |  |  * MPI_File_get_position
+|       14752.000 |  |  |  |  * MPI_File_get_position_shared
+|       14816.000 |  |  |  |  * MPI_File_get_size
+|       14880.000 |  |  |  |  * MPI_File_get_type_extent
+|       14944.000 |  |  |  |  * MPI_File_get_view
+|       15008.000 |  |  |  |  * MPI_File_iread
+|       15072.000 |  |  |  |  * MPI_File_iread_at
+|       15136.000 |  |  |  |  * MPI_File_iread_shared
+|       15200.000 |  |  |  |  * MPI_File_iwrite
+|       15264.000 |  |  |  |  * MPI_File_iwrite_at
+|       15328.000 |  |  |  |  * MPI_File_iwrite_shared
+|       15392.000 |  |  |  |  * MPI_File_open
+|       62208.000 |  |  |  * MPI_File_preallocated
+|       15520.000 |  |  |  |  * MPI_File_read
+|       15584.000 |  |  |  |  * MPI_File_read_all
+|       15648.000 |  |  |  |  * MPI_File_read_all_begin
+|       143712.00 |  |  |  * MPI_File_real_all_end
+|       15776.000 |  |  |  |  * MPI_File_read_at
+|       15840.000 |  |  |  |  * MPI_File_read_at_all
+|       15904.000 |  |  |  |  * MPI_File_read_at_all_begin
+|       15968.000 |  |  |  |  * MPI_File_read_at_all_end
+|       16032.000 |  |  |  |  * MPI_File_read_ordered
+|       16096.000 |  |  |  |  * MPI_File_read_ordered_begin
+|       16160.000 |  |  |  |  * MPI_File_read_ordered_end
+|       16224.000 |  |  |  |  * MPI_File_read_shared
+|       16288.000 |  |  |  * MPI_File_seek
+|       99072.000 |  |  |  * MPI_File_seek_shared
+|       16416.000 |  |  |  |  * MPI_File_set_atomicity
+|       16480.000 |  |  |  |  * MPI_File_set_info
+|       16544.000 |  |  |  |  * MPI_File_set_size
+|       16608.000 |  |  |  |  * MPI_File_set_view
+|       16672.000 |  |  |  |  * MPI_File_sync
+|       187616.00 |  |  |  * MPI_file_write
+|       16800.000 |  |  |  |  * MPI_File_write_all
+|       16864.000 |  |  |  |  * MPI_File_write_all_begin
+|       16928.000 |  |  |  |  * MPI_File_write_all_end
+|       16992.000 |  |  |  |  * MPI_File_write_at_all
+|       17056.000 |  |  |  |  * MPI_File_write_at_all_begin
+|       17120.000 |  |  |  |  * MPI_File_write_at_all_end
+|       17184.000 |  |  |  |  * MPI_File_write_ordered
+|       17248.000 |  |  |  |  * MPI_File_write_ordered_begin
+|       17312.000 |  |  |  |  * MPI_File_write_ordered_end
+|       17376.000 |  |  |  |  * MPI_File_write_shared
+|       52512.000 |  |  |  * MPI_Finalize
+|       17504.000 |  |  |  |  * MPI_Gather
+|       17568.000 |  |  |  |  * mPI_Gatherv
+|       1043712.0 |  |  * MPI_Get
+|       235040.00 |  |  |  * MPI_Graph_create
+|       17760.000 |  |  |  |  * MPI_Group_difference
+|       17824.000 |  |  |  |  * MPI_Group_excl
+|       17888.000 |  |  |  |  * MPI_Group_ free
+|       17952.000 |  |  |  |  * MPI_Group_incl
+|       18016.000 |  |  |  |  * MPI_Group_intersection
+|       18080.000 |  |  |  |  * MPI_Group_range_excl
+|       18144.000 |  |  |  |  * MPI_Group_range_incl
+|       18208.000 |  |  |  |  * MPI_Group_union
+|       18272.000 |  |  |  |  * MPI_Ibsend
+|       18336.000 |  |  |  |  * MPI_Init
+|       18400.000 |  |  |  |  * MPI_Init_thread
+|       18464.000 |  |  |  |  * MPI_Intercomm_create
+|       93280.000 |  |  |  * MPI_Intercomm_merge
+|       18592.000 |  |  |  |  * MPI_Irecv
+|       18656.000 |  |  |  |  * MPI_Irsend
+|       18720.000 |  |  |  |  * MPI_Isend
+|       18784.000 |  |  |  |  * MPI_Issend
+|       191360.00 |  |  |  * MPI_Probe
+|       18912.000 |  |  |  |  * MPI_Put
+|       18976.000 |  |  |  |  * MPI_Recv
+|       19040.000 |  |  |  |  * MPI_Recv_init
+|       19104.000 |  |  |  |  * MPI_Reduce
+|       19168.000 |  |  |  |  * MPI_Reduce_scatter
+|       19232.000 |  |  |  |  * MPI_Request_free
+|       19296.000 |  |  |  |  * MPI_Rsend
+|       19360.000 |  |  |  |  * MPI_Rsend_init
+|       19424.000 |  |  |  |  * MPI_Scan
+|       39040.000 |  |  |  * MPI_Scatter
+|       19552.000 |  |  |  |  * MPI_Scatterv
+|       138656.00 |  |  |  * MPI_Send
+|       19680.000 |  |  |  |  * MPI_Send_init
+|       19744.000 |  |  |  |  * MPI_Sendrecv
+|       19808.000 |  |  |  |  * MPI_Sendrecv_replace
+|       19872.000 |  |  |  |  * MPI_Ssend
+|       19936.000 |  |  |  |  * MPI_Ssend_init
+|       20000.000 |  |  |  |  * MPI_Start
+|       244992.00 |  |  |  * MPI_Startall
+|       20128.000 |  |  |  |  * MPI_Test
+|       20192.000 |  |  |  |  * MPI_Testall
+|       20256.000 |  |  |  |  * MPI_Testany
+|       20320.000 |  |  |  |  * MPI_Testsome
+|       20384.000 |  |  |  |  * MPI_Wait
+|       20448.000 |  |  |  |  * MPI_Waitall
+|       20512.000 |  |  |  |  * MPI_Waitany
+|       20576.000 |  |  |  |  * MPI_Waitsome
+|       20640.000 |  |  |  |  * MPI_Win_complete
+|       20704.000 |  |  |  |  * MPI_Win_create
+|       20768.000 |  |  |  |  * MPI_Win_fence
+|       83712.000 |  |  |  * MPI_Win_free
+|       20896.000 |  |  |  |  * MPI_Win_lock
+|       20960.000 |  |  |  |  * MPI_Win_post
+|       21024.000 |  |  |  |  * MPI_Win_start
+|       42240.000 |  |  * MPI_Win_test
+|       21152.000 |  |  |  * MPI_Win_unlock

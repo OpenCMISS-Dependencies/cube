@@ -1,0 +1,381 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+##if !WITHOUT_GUI
+
+bin_PROGRAMS += cube
+dist_cube_SOURCES = $(SRC_ROOT)src/GUI-qt/display/main.cpp
+
+lib_LTLIBRARIES += libcube4gui.la
+
+CUBE_INCLUDES=\
+	-I$(INC_ROOT)src/cube/include \
+	-I$(INC_ROOT)src/cube/include/service \
+	-I$(INC_ROOT)src/cube/include/service/cubelayout \
+	-I$(INC_ROOT)src/cube/include/service/cubelayout/layout \
+	-I$(INC_ROOT)src/cube/include/service/cubelayout/readers \
+	-I$(INC_ROOT)src/cube/include/derivated \
+	-I$(INC_ROOT)src/cube/include/dimensions \
+	-I$(INC_ROOT)src/cube/include/dimensions/system \
+	-I$(INC_ROOT)src/cube/include/dimensions/calltree \
+	-I$(INC_ROOT)src/cube/include/dimensions/metric \
+	-I$(INC_ROOT)src/cube/include/dimensions/metric/strategies \
+	-I$(INC_ROOT)src/cube/include/dimensions/metric/data \
+	-I$(INC_ROOT)src/cube/include/dimensions/metric/cache \
+	-I$(INC_ROOT)src/cube/include/dimensions/metric/data/rows \
+	-I$(INC_ROOT)src/cube/include/dimensions/metric/index \
+	-I$(INC_ROOT)src/cube/include/dimensions/metric/matrix \
+	-I$(INC_ROOT)src/cube/include/dimensions/metric/value \
+	-I$(INC_ROOT)src/cube/include/dimensions/metric/value/trafo \
+	-I$(INC_ROOT)src/cube/include/dimensions/metric/value/trafo/single_value \
+	-I$(INC_ROOT)src/cube/include/syntax \
+	-I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators \
+	-I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary \
+	-I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary \
+	-I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument \
+	-I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary \
+	-I$(INC_ROOT)src/cube/include/syntax/cubepl \
+	-I$(INC_ROOT)src/cube/include/topologies
+
+GUI_INCLUDES=-I$(INC_ROOT)src/GUI-qt/display/
+
+libcube4gui_la_SOURCES = \
+	$(SRC_ROOT)src/GUI-qt/display/SettingsToolBar.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/ScrollArea.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/DerivedMetricEditor.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/BoxPlot.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/Coloring.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/DownloadThread.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/FontWidget.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/Environment.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/HelpBrowser.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/HtmlWidget.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/MainWidget.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/PrecisionWidget.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/Pretty.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/AggregatedTreeItem.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/TreeItem.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/Settings.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/StatisticalInformation.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/TableWidget.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/TabWidget.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/PluginList.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/ValueWidget.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/StatusBar.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/InfoWidget.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/NewDerivatedMetricWidget.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/CubePLSyntaxHighlighter.cpp  \
+	$(SRC_ROOT)src/GUI-qt/display/VersionCheckWidget.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/PluginServices.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/ContextFreeServices.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/PluginSettingDialog.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/PluginManager.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/HtmlHelpCollection.cpp  \
+	$(SRC_ROOT)src/GUI-qt/display/DerivedMetricsCollection.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/DimensionOrderDialog.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/ColorScale.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/Globals.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/TabManager.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/TreeView.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/TreeItemMarkerDialog.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/MetricTreeView.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/CallTreeView.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/FlatTreeView.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/SystemTreeView.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/Tree.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/TreeModel.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/TreeModelProxy.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/MetricTree.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/CallTree.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/FlatTree.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/SystemTree.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/TreeItemMarker.cpp \
+	$(SRC_ROOT)src/GUI-qt/display/SettingsToolBar.h \
+	$(SRC_ROOT)src/GUI-qt/display/Globals.h \
+	$(SRC_ROOT)src/GUI-qt/display/DimensionOrderDialog.h \
+	$(SRC_ROOT)src/GUI-qt/display/TreeModel.h \
+	$(SRC_ROOT)src/GUI-qt/display/TreeModelProxy.h \
+	$(SRC_ROOT)src/GUI-qt/display/ColorScale.h \
+	$(SRC_ROOT)src/GUI-qt/display/BoxPlot.h \
+	$(SRC_ROOT)src/GUI-qt/display/Coloring.h \
+	$(SRC_ROOT)src/GUI-qt/display/Constants.h \
+	$(SRC_ROOT)src/GUI-qt/display/CubePlugin.h \
+	$(SRC_ROOT)src/GUI-qt/display/DownloadThread.h \
+	$(SRC_ROOT)src/GUI-qt/display/Environment.h \
+	$(SRC_ROOT)src/GUI-qt/display/FontWidget.h \
+	$(SRC_ROOT)src/GUI-qt/display/HelpBrowser.h \
+	$(SRC_ROOT)src/GUI-qt/display/HtmlWidget.h \
+	$(SRC_ROOT)src/GUI-qt/display/MainWidget.h \
+	$(SRC_ROOT)src/GUI-qt/display/StatusBar.h \
+	$(SRC_ROOT)src/GUI-qt/display/InfoWidget.h \
+	$(SRC_ROOT)src/GUI-qt/display/PrecisionWidget.h \
+	$(SRC_ROOT)src/GUI-qt/display/Pretty.h \
+	$(SRC_ROOT)src/GUI-qt/display/Settings.h \
+	$(SRC_ROOT)src/GUI-qt/display/AggregatedTreeItem.h \
+	$(SRC_ROOT)src/GUI-qt/display/TreeItem.h \
+	$(SRC_ROOT)src/GUI-qt/display/ScrollArea.h \
+	$(SRC_ROOT)src/GUI-qt/display/DerivedMetricEditor.h \
+	$(SRC_ROOT)src/GUI-qt/display/TableWidget.h \
+	$(SRC_ROOT)src/GUI-qt/display/StatisticalInformation.h \
+	$(SRC_ROOT)src/GUI-qt/display/TabWidget.h \
+	$(SRC_ROOT)src/GUI-qt/display/PluginList.h \
+	$(SRC_ROOT)src/GUI-qt/display/TabInterface.h \
+	$(SRC_ROOT)src/GUI-qt/display/ValueWidget.h \
+	$(SRC_ROOT)src/GUI-qt/display/NewDerivatedMetricWidget.h   \
+	$(SRC_ROOT)src/GUI-qt/display/CubePLSyntaxHighlighter.h   \
+	$(SRC_ROOT)src/GUI-qt/display/VersionCheckWidget.h \
+	$(SRC_ROOT)src/GUI-qt/display/PluginServices.h \
+	$(SRC_ROOT)src/GUI-qt/display/ContextFreeServices.h \
+	$(SRC_ROOT)src/GUI-qt/display/PluginManager.h \
+	$(SRC_ROOT)src/GUI-qt/display/PluginSettingDialog.h \
+	$(SRC_ROOT)src/GUI-qt/display/HtmlHelpCollection.h \
+	$(SRC_ROOT)src/GUI-qt/display/HmiInstrumentation.h \
+	$(SRC_ROOT)src/GUI-qt/display/DerivedMetricsCollection.h \
+	$(SRC_ROOT)src/GUI-qt/display/Tree.h \
+	$(SRC_ROOT)src/GUI-qt/display/FlatTree.h \
+	$(SRC_ROOT)src/GUI-qt/display/SystemTree.h \
+	$(SRC_ROOT)src/GUI-qt/display/MetricTree.h \
+	$(SRC_ROOT)src/GUI-qt/display/CallTree.h \
+	$(SRC_ROOT)src/GUI-qt/display/TreeView.h \
+	$(SRC_ROOT)src/GUI-qt/display/TreeItemMarkerDialog.h \
+	$(SRC_ROOT)src/GUI-qt/display/MetricTreeView.h \
+	$(SRC_ROOT)src/GUI-qt/display/CallTreeView.h \
+	$(SRC_ROOT)src/GUI-qt/display/FlatTreeView.h \
+	$(SRC_ROOT)src/GUI-qt/display/SystemTreeView.h \
+	$(SRC_ROOT)src/GUI-qt/display/TabManager.h \
+	$(SRC_ROOT)src/GUI-qt/display/ColorMap.h \
+	$(SRC_ROOT)src/GUI-qt/resources.qrc \
+        $(SRC_ROOT)src/GUI-qt/images/distance1.fig\
+        $(SRC_ROOT)src/GUI-qt/images/distance1.png\
+        $(SRC_ROOT)src/GUI-qt/images/distance1_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/distance2.fig\
+        $(SRC_ROOT)src/GUI-qt/images/distance2.png\
+        $(SRC_ROOT)src/GUI-qt/images/distance2_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/down.fig\
+        $(SRC_ROOT)src/GUI-qt/images/down.png\
+        $(SRC_ROOT)src/GUI-qt/images/down_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/fzjlogo.xpm\
+        $(SRC_ROOT)src/GUI-qt/images/left.fig\
+        $(SRC_ROOT)src/GUI-qt/images/left.png\
+        $(SRC_ROOT)src/GUI-qt/images/left_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/reset.fig\
+        $(SRC_ROOT)src/GUI-qt/images/reset.png\
+        $(SRC_ROOT)src/GUI-qt/images/reset_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/right.fig\
+        $(SRC_ROOT)src/GUI-qt/images/right.png\
+        $(SRC_ROOT)src/GUI-qt/images/right_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/scale.fig\
+        $(SRC_ROOT)src/GUI-qt/images/scale_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/up.fig\
+        $(SRC_ROOT)src/GUI-qt/images/up.png\
+        $(SRC_ROOT)src/GUI-qt/images/up_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/user.fig\
+        $(SRC_ROOT)src/GUI-qt/images/user_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/warning.png\
+        $(SRC_ROOT)src/GUI-qt/images/warning_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/xrotate1.fig\
+        $(SRC_ROOT)src/GUI-qt/images/xrotate1.png\
+        $(SRC_ROOT)src/GUI-qt/images/xrotate1_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/xrotate2.fig\
+        $(SRC_ROOT)src/GUI-qt/images/xrotate2.png\
+        $(SRC_ROOT)src/GUI-qt/images/xrotate2_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/xy.fig\
+        $(SRC_ROOT)src/GUI-qt/images/xy.png\
+        $(SRC_ROOT)src/GUI-qt/images/xy_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/xyz.fig\
+        $(SRC_ROOT)src/GUI-qt/images/xyz.png\
+        $(SRC_ROOT)src/GUI-qt/images/xyz_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/xzy.fig\
+        $(SRC_ROOT)src/GUI-qt/images/xzy.png\
+        $(SRC_ROOT)src/GUI-qt/images/xzy_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/yrotate1.fig\
+        $(SRC_ROOT)src/GUI-qt/images/yrotate1.png\
+        $(SRC_ROOT)src/GUI-qt/images/yrotate1_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/yrotate2.fig\
+        $(SRC_ROOT)src/GUI-qt/images/yrotate2.png\
+        $(SRC_ROOT)src/GUI-qt/images/yrotate2_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/yx.fig\
+        $(SRC_ROOT)src/GUI-qt/images/yx.png\
+        $(SRC_ROOT)src/GUI-qt/images/yx_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/yxz.fig\
+        $(SRC_ROOT)src/GUI-qt/images/yxz.png\
+        $(SRC_ROOT)src/GUI-qt/images/yxz_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/yzx.fig\
+        $(SRC_ROOT)src/GUI-qt/images/yzx.png\
+        $(SRC_ROOT)src/GUI-qt/images/yzx_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/zoomin.fig\
+        $(SRC_ROOT)src/GUI-qt/images/zoomin.png\
+        $(SRC_ROOT)src/GUI-qt/images/zoomin_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/zoomout.fig\
+        $(SRC_ROOT)src/GUI-qt/images/zoomout.png\
+        $(SRC_ROOT)src/GUI-qt/images/zoomout_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/zrotate1.fig\
+        $(SRC_ROOT)src/GUI-qt/images/zrotate1.png\
+        $(SRC_ROOT)src/GUI-qt/images/zrotate1_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/zrotate2.fig\
+        $(SRC_ROOT)src/GUI-qt/images/zrotate2.png\
+        $(SRC_ROOT)src/GUI-qt/images/zrotate2_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/zxy.fig\
+        $(SRC_ROOT)src/GUI-qt/images/zxy.png\
+        $(SRC_ROOT)src/GUI-qt/images/zxy_small.png\
+        $(SRC_ROOT)src/GUI-qt/images/zyx.fig\
+        $(SRC_ROOT)src/GUI-qt/images/zyx.png\
+        $(SRC_ROOT)src/GUI-qt/images/zyx_small.png \
+        $(SRC_ROOT)src/GUI-qt/images/CubeLogo.xpm \
+        $(SRC_ROOT)src/GUI-qt/images/CubeIcon.xpm \
+        $(SRC_ROOT)src/GUI-qt/images/whatishelp.png \
+        $(SRC_ROOT)src/GUI-qt/images/paste-icon.png \
+        $(SRC_ROOT)src/GUI-qt/images/fromtextfile.png \
+        $(SRC_ROOT)src/GUI-qt/images/boxplot-icon.png \
+        $(SRC_ROOT)src/GUI-qt/images/tree-icon.png \
+        $(SRC_ROOT)src/GUI-qt/images/list-icon.png \
+        $(SRC_ROOT)src/GUI-qt/images/topology-icon.png  \
+        $(SRC_ROOT)src/GUI-qt/images/updateAvailable.png  \
+        $(SRC_ROOT)src/GUI-qt/images/noCheckPossible.png  \
+        $(SRC_ROOT)src/GUI-qt/images/recentVersion.png \
+        $(SRC_ROOT)src/GUI-qt/images/split_small.png \
+        $(SRC_ROOT)src/GUI-qt/images/folding_xy_small.png \
+        $(SRC_ROOT)src/GUI-qt/images/projection_xy_small.png \
+        $(SRC_ROOT)src/GUI-qt/images/folding_xyz_small.png \
+        $(SRC_ROOT)src/GUI-qt/images/projection_xyz_small.png \
+        $(SRC_ROOT)src/GUI-qt/images/iterations_small.png \
+        $(SRC_ROOT)src/GUI-qt/images/savetofile.png \
+        $(SRC_ROOT)src/GUI-qt/images/source.png  \
+        $(SRC_ROOT)src/GUI-qt/images/syntax_error.png  \
+        $(SRC_ROOT)src/GUI-qt/images/syntax_ok.png
+
+
+cube_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    $(CXXFLAGS_FOR_BUILD) \
+    $(OPENMP_CXXFLAGS) \
+    $(DBUS_CXXFLAGS) \
+    $(FRONTEND_LIBZ_HEADERS) \
+    $(QT_CXXFLAGS) \
+    $(QT_CPPFLAGS) \
+    -DCUBE_PREFIX='"$(prefix)"' \
+    -DLIBDIR='"$(libdir)"' \
+    -DWITH_PLUGINS \
+    $(CUBE_INCLUDES) \
+    $(HMI_INSTRUMENTATION) \
+    -I.
+
+cube_LDADD = \
+    libcube4gui.la \
+    libcube4.la \
+    $(SUBLIBS) \
+    $(QT_LIBS) \
+    $(FRONTEND_LIBZ_LD) \
+    $(DBUS_LDFLAGS)
+
+cube_LDFLAGS = \
+    $(QT_LDFLAGS) \
+    $(OPENMP_LDFLAGS) \
+    $(OPENMP_CXXFLAGS)
+
+libcube4gui_la_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    $(CXXFLAGS_FOR_BUILD) \
+    $(OPENMP_CXXFLAGS) \
+    $(DBUS_CXXFLAGS) \
+    $(FRONTEND_LIBZ_HEADERS) \
+    $(QT_CXXFLAGS) \
+    $(QT_CPPFLAGS) \
+    -DCUBE_PREFIX='"$(prefix)"' \
+    -DLIBDIR='"$(libdir)"' \
+    -DWITH_PLUGINS \
+    $(CUBE_INCLUDES) \
+    $(HMI_INSTRUMENTATION) \
+    -I. 
+
+libcube4gui_la_LDFLAGS = $(QT_LDFLAGS) -version-info @LIBRARY_INTERFACE_VERSION@
+
+libcube4gui_moc_files = \
+	../src/GUI-qt/display/SettingsToolBar.moc.cpp \
+	../src/GUI-qt/display/ScrollArea.moc.cpp \
+	../src/GUI-qt/display/DerivedMetricEditor.moc.cpp \
+	../src/GUI-qt/display/Coloring.moc.cpp \
+	../src/GUI-qt/display/DownloadThread.moc.cpp \
+	../src/GUI-qt/display/FontWidget.moc.cpp \
+	../src/GUI-qt/display/HtmlWidget.moc.cpp \
+	../src/GUI-qt/display/HelpBrowser.moc.cpp \
+	../src/GUI-qt/display/MainWidget.moc.cpp \
+	../src/GUI-qt/display/StatusBar.moc.cpp \
+	../src/GUI-qt/display/InfoWidget.moc.cpp \
+	../src/GUI-qt/display/PrecisionWidget.moc.cpp \
+	../src/GUI-qt/display/Settings.moc.cpp \
+	../src/GUI-qt/display/TabWidget.moc.cpp \
+	../src/GUI-qt/display/ValueWidget.moc.cpp \
+	../src/GUI-qt/display/TableWidget.moc.cpp \
+	../src/GUI-qt/display/NewDerivatedMetricWidget.moc.cpp   \
+	../src/GUI-qt/display/CubePLSyntaxHighlighter.moc.cpp   \
+	../src/GUI-qt/display/VersionCheckWidget.moc.cpp   \
+	../src/GUI-qt/display/PluginSettingDialog.moc.cpp   \
+	../src/GUI-qt/display/PluginManager.moc.cpp   \
+	../src/GUI-qt/display/PluginServices.moc.cpp   \
+	../src/GUI-qt/display/ContextFreeServices.moc.cpp   \
+	../src/GUI-qt/display/Tree.moc.cpp   \
+	../src/GUI-qt/display/TreeView.moc.cpp   \
+	../src/GUI-qt/display/TreeItemMarkerDialog.moc.cpp   \
+	../src/GUI-qt/display/MetricTreeView.moc.cpp   \
+	../src/GUI-qt/display/CallTreeView.moc.cpp   \
+	../src/GUI-qt/display/SystemTreeView.moc.cpp   \
+	../src/GUI-qt/display/TabManager.moc.cpp   \
+	../src/GUI-qt/display/ColorMap.moc.cpp  
+
+libcube4gui_qrc_files = \
+	../src/GUI-qt/resources.qrc.cpp
+
+CLEANFILES += $(libcube4gui_moc_files) $(libcube4gui_qrc_files)
+nodist_libcube4gui_la_SOURCES = $(libcube4gui_moc_files) $(libcube4gui_qrc_files)
+
+
+libcube4gui_moc_o=$(libcube4gui_moc_files:%.moc.o=%.moc.cpp)
+libcube4gui_qrc_o=$(libcube4gui_qrc_files:%.qrc.o=%.qrc.cpp)
+
+$(libcube4gui_moc_o): ../src/GUI-qt/display/%.moc.cpp: $(SRC_ROOT)src/GUI-qt/display/%.h
+	@echo "Create moc file $@"
+	@$(MKDIR_P) ../src/GUI-qt/display
+	@$(MOC) $(QT_CPPFLAGS) $(CUBE_INCLUDES) $(GUI_INCLUDES) $(DEFINE_TRACE_BROWSER) $< -o $@
+
+$(libcube4gui_qrc_o):../src/GUI-qt/%.qrc.cpp: $(SRC_ROOT)src/GUI-qt/%.qrc
+	@echo "Create resource file $@"
+	@$(MKDIR_P) ../src/GUI-qt
+	@$(RCC) -name `echo "$<" | sed 's|^.*/\(.*\)\.qrc$$|\1|'` $< -o $@
+
+SUFFIXES = .qrc.cpp .qrc .moc.cpp
+
+
+# headers which are used by plugins
+dist_gui_qt4_headers_HEADERS +=                \
+	$(SRC_ROOT)src/GUI-qt/display/StatisticalInformation.h \
+	$(SRC_ROOT)src/GUI-qt/display/Constants.h \
+	$(SRC_ROOT)src/GUI-qt/display/PluginInterface.h \
+	$(SRC_ROOT)src/GUI-qt/display/CubePlugin.h \
+	$(SRC_ROOT)src/GUI-qt/display/ContextFreePlugin.h \
+	$(SRC_ROOT)src/GUI-qt/display/PluginServices.h \
+	$(SRC_ROOT)src/GUI-qt/display/Globals.h \
+	$(SRC_ROOT)src/GUI-qt/display/ContextFreeServices.h \
+	$(SRC_ROOT)src/GUI-qt/display/TreeItem.h \
+	$(SRC_ROOT)src/GUI-qt/display/AggregatedTreeItem.h \
+	$(SRC_ROOT)src/GUI-qt/display/TabInterface.h \
+	$(SRC_ROOT)src/GUI-qt/display/TreeItemMarker.h \
+	$(SRC_ROOT)src/GUI-qt/display/ColorMap.h 
+
+
+##endif

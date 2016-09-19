@@ -1,0 +1,41 @@
+#!/bin/bash
+
+##*************************************************************************##
+##  CUBE        http://www.score-p.org/                                    ##
+##  SCALASCA    http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2015                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+CUBES_DIR="@abs_stcdir@"
+TEMPLATE_CUBE="$CUBES_DIR/template.cube"
+echo "######################################################"                                                                                                                                                                                                                                                                                                              
+echo "#Run test 4 : Check the cube creation by c library . "                                                                                                                                                                                                                                                                                                              
+echo "#             using parallel scheduler.   "                                                                                                                                                                                                                                                                                                              
+echo "#"                                                                                                                                                                                                                                                                                                                                                                   
+echo "#"                                                                                                                                                                                                                                                                                                                                   
+echo "######################################################"                                                                                                                                                                                                                                                                                                              
+mkdir -p tests
+cd tests
+echo "=====> Creation of the example cube..."
+mpirun -np 4 ../cube_self_test4
+echo  "=====> Comparing..."
+../cube_cmp example.cubex $TEMPLATE_CUBE 
+result=$?
+cd ..
+if [[ $result -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above for more details."
+exit -1
+fi
+                         

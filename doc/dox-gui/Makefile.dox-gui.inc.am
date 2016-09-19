@@ -1,0 +1,48 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+## Convenience variable
+DOXYGEN_DOX_GUI_SRC = $(SRC_ROOT)doc/doxygen-gui
+
+
+##--- Extra distribution files ----------------------------------------------
+
+
+##--- Doxygen-related targets -----------------------------------------------
+
+if HAVE_DOXYGEN
+
+PHONY_TARGETS += \
+    doxygen-gui
+
+
+doxygen-gui: $(USER_DOC_DIR)/gui/tags
+	echo "Create GUI documentation "
+	@-cat doc/doxygen-gui.cfg  | doxygen -
+	@-_tmp=`pwd`; cd $(srcdir)/doc/dox-gui/images; pdflatex titlepage.tex; pdflatex titlepage.tex; cd $$_tmp
+	@-cp $(srcdir)/doc/dox-gui/images/*.pdf $(USER_DOC_DIR)/gui/pdf/.
+	@-cp $(srcdir)/doc/dox-gui/scalasca.sty $(USER_DOC_DIR)/gui/pdf/.
+	@-cp $(srcdir)/doc/dox-gui/figures/*.png $(USER_DOC_DIR)/gui/pdf/.
+	@-echo "Create Cube GUI documentation (run pdflatex)"
+	@-_tmp=`pwd`; cd $(USER_DOC_DIR)/gui/pdf/; make; cd $$_tmp; cp $(USER_DOC_DIR)/gui/pdf/refman.pdf $(srcdir)/doc/CubeGuide.pdf
+
+$(USER_DOC_DIR)/gui/tags:
+	echo "Create tags directory $(USER_DOC_DIR)/gui/tags"
+	mkdir -p $(USER_DOC_DIR)/gui/tags	
+	
+endif HAVE_DOXYGEN

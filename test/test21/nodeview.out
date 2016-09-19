@@ -1,0 +1,3 @@
+   Nodes   Total    Per node Regions  Cnodes      Metric             Max             Min             Avg         Std_dev Cubefile
+         Threads     Threads
+       1      64       64.00     169     300      visits      3494400.00      3494400.00      3494400.00            0.00 example3.cubex

@@ -1,0 +1,109 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+#!/bin/bash
+CUBES_DIR="@abs_srcdir@"
+TEMPLATE_CUBE="$CUBES_DIR/template.cube"
+TEMPLATE_DATA1="$CUBES_DIR/example3_2.data"
+TEMPLATE_DATA2="$CUBES_DIR/example_system_tree.data"
+TEMPLATE_DATA3="$CUBES_DIR/flex_aggregation_incl.data"
+TEMPLATE_DATA4="$CUBES_DIR/flex_aggregation_excl.data"
+
+
+echo "######################################################"                                                                                                                                                                                                                                                                                                              
+echo "#Run test 3 : Check the cube creation by c library. "                                                                                                                                                                                                                                                                                                              
+echo "#"                                                                                                                                                                                                                                                                                                                                                                   
+echo "#"                                                                                                                                                                                                                                                                                                                                  
+echo "######################################################"      
+mkdir -p tests
+cd tests
+
+echo  "=====> Creation of the first example cube..."
+../cube_self_test3
+echo "done."
+result1=$?
+
+echo  "=====> Creation of the compressed example cube..."
+../cube_self_test3_1
+echo "done."
+result2=$?
+
+echo  "=====> Creation of the cube with derived metrics..."
+../cube_self_test3_2
+echo "done."
+result3_2=$?
+
+echo  "=====> Creation of the cube with advanced system tree..."
+../cube_self_test3_3
+echo "done."
+result3=$?
+
+
+
+
+
+ echo  "=====> Comparing first one..."
+../cube_cmp example3.cubex $TEMPLATE_CUBE 
+result4=$?
+ echo  "=====> Comparing second one..."
+../cube_cmp example3-compressed.cubex $TEMPLATE_CUBE 
+result5=$?
+ echo  "=====> Comparing together..."
+../cube_cmp example3.cubex example3-compressed.cubex 
+result6=$?
+echo "=====> Calculating some values from derived metrics" 
+../cube_dump -m exp2 -c 10 -s gnuplot example_derivated.cubex  > test3_2.out
+result7=$?
+echo "=====> Comparing results with stored values" 
+diff test3_2.out  $TEMPLATE_DATA1 > test3_1.diff
+result8=$?
+
+echo "=====> Dumping some values from example_system_tree.cubex" 
+../cube_dump -m time -s csv example_system_tree.cubex > example_system_tree.out
+result9=$?
+echo "=====> Comparing results with stored values" 
+diff example_system_tree.out  $TEMPLATE_DATA2 > test3_2.diff
+result10=$?
+
+
+echo  "=====> Creation of the cube with ghost metrics..."
+../cube_self_test3_5
+echo "done."
+result11=$?
+
+echo  "=====> Checking flexible aggregation (inclusive values)..."
+../cube_dump -m exp3,exp4   -z incl -t aggr  -s csv2 example_derivated.cubex  > flex_aggr_incl.out 
+echo "done."
+result12=$?
+echo "=====> Comparing results with stored values" 
+diff flex_aggr_incl.out  $TEMPLATE_DATA3 > test3_flex_aggr_incl.diff
+result13=$?
+echo  "=====> Checking flexible aggregation (exclusive values)..."
+../cube_dump -m exp3,exp4   -z excl -t aggr  -s csv2 example_derivated.cubex  > flex_aggr_excl.out 
+echo "done."
+result14=$?
+echo "=====> Comparing results with stored values" 
+diff flex_aggr_excl.out  $TEMPLATE_DATA4 > test3_flex_aggr_excl.diff
+result15=$?
+
+
+cd ..
+if [[ $result1 -ne 0 || $result2 -ne 0 || $result3_2 -ne 0 || $result3 -ne 0 ||  $result4 -ne 0 || $result5 -ne 0  || $result6 -ne 0 || $result7 -ne 0 || $result8 -ne 0 || $result9 -ne 0 || $result10 -ne 0 || $result11 -ne 0 || $result12 -ne 0 || $result13 -ne 0 || $result14 -ne 0 || $result15 -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above for more details."
+exit -1 
+fi
+                                       

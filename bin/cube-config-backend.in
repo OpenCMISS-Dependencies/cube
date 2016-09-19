@@ -1,0 +1,81 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.score-p.org/                                    ##
+##  SCALASCA    http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2015                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+if test "x@CROSS_BUILD@" = "xyes"; then
+BACKEND_DIR="backend"
+BACKEND_LIBZ_LD="@BACKEND_LIBZ_LD@"
+BACKEND_LIBZ_HEADERS="@BACKEND_LIBZ_HEADERS@"
+
+
+
+BACKEND_CUBEW_LIBS_DIR=@libdir@/$BACKEND_DIR
+BACKEND_CUBEW_LD_LIB="-lcube4w -lcubewriter4 $BACKEND_LIBZ_LD"
+BACKEND_CUBEW_SH_LD_LIB="-lcube4w -lcubewriter4 $BACKEND_LIBZ_LD"
+BACKEND_CUBEW_HEADERS_DIR=@includedir@/cubew
+BACKEND_CUBEW_LDFLAGS="-L$BACKEND_CUBEW_LIBS_DIR $BACKEND_CUBEW_LD_LIB"
+BACKEND_CUBEW_SHLDFLAGS="-L$BACKEND_CUBEW_LIBS_DIR -Wl,-rpath -Wl,$BACKEND_CUBEW_LIBS_DIR $BACKEND_CUBEW_SH_LD_LIB"
+BACKEND_CUBEW_CXXFLAGS="-I$BACKEND_CUBEW_HEADERS_DIR $BACKEND_LIBZ_HEADERS"
+BACKEND_CUBEW_LIBRARY="-lcube4w -lcubewriter4"
+BACKEND_CUBEW_SHARED_LIBRARY="-lcube4w -lcubewriter4"
+
+BACKEND_APP_CUBEW_CFLAGS="-I$BACKEND_CUBEW_HEADERS_DIR"
+BACKEND_APP_CUBE_CXXFLAGS=$CUBE_CXXFLAGS
+BACKEND_APP_ADD_LDFLAGS="-lm"
+BACKEND_APP_ADD_CXXFLAGS=""
+
+
+if test "x@MSG_BACKEND_COMPRESSION@" = "xyes"; then
+BACKEND_APP_ADD_CXXFLAGS+=" $BACKEND_LIBZ_HEADERS "
+BACKEND_ADD_LDFLAGS+=" $BACKEND_LIBZ_LD -lz"
+fi
+
+else
+BACKEND_DIR=$FRONTEND_DIR
+BACKEND_LIBZ_LD=$FRONTEND_LIBZ_LD
+BACKEND_LIBZ_HEADERS=$FRONTEND_LIBZ_HEADERS
+
+
+BACKEND_CUBEW_LIBS_DIR=$FRONTEND_CUBEW_LIBS_DIR
+BACKEND_CUBEW_LD_LIB=$FRONTEND_CUBEW_LD_LIB
+BACKEND_CUBEW_SH_LD_LIB=$FRONTEND_CUBEW_SH_LD_LIB
+BACKEND_CUBEW_HEADERS_DIR=$FRONTEND_CUBEW_HEADERS_DIR
+BACKEND_CUBEW_LDFLAGS=$FRONTEND_CUBEW_LDFLAGS
+BACKEND_CUBEW_SHLDFLAGS=$FRONTEND_CUBEW_SHLDFLAGS
+BACKEND_CUBEW_CXXFLAGS=$FRONTEND_CUBEW_CXXFLAGS
+BACKEND_CUBEW_LIBRARY=$FRONTEND_CUBEW_LIBRARY
+BACKEND_CUBEW_SHARED_LIBRARY=$FRONTEND_CUBEW_SHARED_LIBRARY
+
+BACKEND_APP_CUBEW_CFLAGS=$FRONTEND_APP_CUBEW_CFLAGS
+BACKEND_APP_CUBE_CXXFLAGS=$FRONTEND_APP_CUBE_CXXFLAGS
+BACKEND_APP_ADD_LDFLAGS=$FRONTEND_APP_ADD_LDFLAGS
+BACKEND_APP_ADD_CXXFLAGS=$FRONTEND_APP_ADD_CXXFLAGS
+
+fi
+
+LIBRARY_INTERFACE_VERSION=@LIBRARY_INTERFACE_VERSION@
+
+
+# --------- list of tools ----------------
+CUBE_REMAPPER="cube_remap"
+CUBE_MERGE="cube_merge"
+CUBE_SCORE="cube_score"
+CUBE_GUI="cube"
+
+# this should be actually in frontend part of cube-configure, but build system...
+BACKEND_CC="@CC@"
+BACKEND_CXX="@CXX@"

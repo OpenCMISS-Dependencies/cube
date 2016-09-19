@@ -1,0 +1,112 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+#------------------------------------------------------------------------------
+# General Settings
+#------------------------------------------------------------------------------
+
+CUBE_DIR = @prefix@
+CUBE_CONFIG = $(CUBE_DIR)/bin/cube-config
+
+CPPFLAGS = $(shell $(CUBE_CONFIG) --cube-cxxflags)
+CFLAGS = $(shell $(CUBE_CONFIG) --frontend-cubew-cxxflags)
+CLDFLAGS := $(shell $(CUBE_CONFIG) --frontend-cubew-ldflags) $(shell $(CUBE_CONFIG) --frontend-app-cubew-ldflags)   $(shell $(CUBE_CONFIG) --frontend-add-ldflags)
+CPPLDFLAGS := $(shell $(CUBE_CONFIG) --cube-ldflags)  $(shell $(CUBE_CONFIG) --frontend-app-cube-ldflags)   $(shell $(CUBE_CONFIG) --frontend-add-ldflags)
+
+ISCUBE="@WITH_CPP_LIB@"
+ISCUBEW="@WITH_C_WRITER@"
+
+MPI_EXEC_PREFIX=@MPI_EXEC_PREFIX@
+NONMPI_EXEC_PREFIX=@NONMPI_EXEC_PREFIX@
+
+MPI_SCRIPT=@MPI_SCRIPT@
+NOMPI_SCRIPT=@NOMPI_SCRIPT@
+
+
+# INTEL COMPILER 
+CXX = @CXX@
+CC = @CC@
+MPICC = @MPICC@
+MPICXX = @MPICXX@
+
+
+
+.SUFFIXES: .c .o .cpp .c.exe .cpp.exe .c.o .cpp.o .java .java.class .mpi.c .mpi.cpp .mpi.c.exe .mpi.cpp.exe
+.PHONY: all  clean
+
+
+# Object files
+OBJS =  
+TARGET =
+#ifeq ($(ISCUBE), "yes")
+# OBJS += cube_example.cpp.o 
+TARGET+= 	@NOMPI_CUBE_FRONTEND_EXAMPLES_EXE@ \
+		@MPI_CUBE_FRONTEND_EXAMPLES_EXE@ \
+		@NOMPI_CUBEW_FRONTEND_EXAMPLES_EXE@ \
+		@MPI_CUBEW_FRONTEND_EXAMPLES_EXE@ 
+
+
+
+%.cpp.o : %.cpp
+	$(CXX) -c $< -o $@ $(CPPFLAGS)
+
+%.cpp.exe : %.cpp.o
+	$(CXX)  $< -o $@ $(CPPLDFLAGS)
+
+
+
+
+%.mpic.c.o : %.mpi.c
+	$(MPICC) -c $< -o $@ $(CFLAGS)
+
+%.mpi.c.exe : %.mpi.c.o
+	$(MPICC) $< -o $@  $(CLDFLAGS)
+
+%.mpi.cpp.o : %.mpi.cpp
+	$(MPICXX) -c $< -o $@ $(CPPFLAGS) $(CFLAGS)
+
+%.mpi.cpp.exe : %.mpi.cpp.o
+	$(MPICXX) $< -o $@  $(CLDFLAGS)
+
+
+
+%.c.o : %.c
+	$(CC) -c $< -o $@ $(CFLAGS) 
+
+%.c.exe : %.c.o
+	$(CC)  $< -o $@ $(CLDFLAGS)
+
+#------------------------------------------------------------------------------
+# Rules
+#------------------------------------------------------------------------------
+
+all: $(TARGET) 
+	@echo "=============================================================="
+	@echo "'make run' - will run all frontend examples one after other."
+	@echo "=============================================================="
+
+
+run: nompi_script_run mpi_script_run 
+
+mpi_script_run:
+	@for japp in @MPI_FRONTEND_APPS_EXE@; do \
+	sh mpi_exec.sh $$japp; \
+	done
+nompi_script_run:
+	@for japp in @NOMPI_FRONTEND_APPS_EXE@; do \
+	./$$japp; \
+	done
+

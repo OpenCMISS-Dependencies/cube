@@ -1,0 +1,301 @@
+|   Messages in W | Diff-Calltree
+|         3820800 |  * UNKNOWN
+|           85888 |  |  * TRACING
+|           28160 |  |  |  * MPI_Accumulate
+|            3360 |  |  |  |  * MPI_Allgather
+|            3424 |  |  |  |  * MPI_Allgatherv
+|            3488 |  |  |  |  * MPI_Allreduce
+|            3552 |  |  |  |  * MPI_Alltoall
+|            3616 |  |  |  |  * MPI_Alltoallv
+|            3680 |  |  |  |  * MPI_Alltoallw
+|            3744 |  |  |  |  * MPI_Barrier
+|           54496 |  |  |  * MPI_Bcast
+|            3872 |  |  |  |  * MPI_Bsend
+|            3936 |  |  |  |  * MPI_Bsend_init
+|            4000 |  |  |  |  * MPI_Cancel
+|            4064 |  |  |  |  * MPI_Cart_create
+|            4128 |  |  |  |  * MPI_Comm_create
+|            4192 |  |  |  |  * MPI_Comm_dup
+|            4256 |  |  |  |  * MPI_Comm_free
+|            4320 |  |  |  |  * MPI_Comm_group
+|            4384 |  |  |  |  * MPI_Comm_remote_group
+|            4448 |  |  |  |  * MPI_Comm_split
+|            4512 |  |  |  |  * MPI_Exscan
+|            4576 |  |  |  |  * MPI_File_close
+|          180224 |  |  * MPI_File_delete
+|           49920 |  |  |  * MPI_File_get_amode
+|            4768 |  |  |  |  * MPI_File_get_atomicity
+|            4832 |  |  |  |  * MPI_File_get_byte_offset
+|            4896 |  |  |  |  * MPI_File_get_group
+|            4960 |  |  |  |  * MPI_File_get_info
+|            5024 |  |  |  |  * MPI_File_get_position
+|            5088 |  |  |  |  * MPI_File_get_position_shared
+|            5152 |  |  |  |  * MPI_File_get_size
+|            5216 |  |  |  |  * MPI_File_get_type_extent
+|            5280 |  |  |  |  * MPI_File_get_view
+|           10752 |  |  |  * MPI_File_iread
+|            5408 |  |  |  |  * MPI_File_iread_at
+|           39648 |  |  |  * MPI_File_iread_shared
+|            5536 |  |  |  |  * MPI_File_iwrite
+|            5600 |  |  |  |  * MPI_File_iwrite_at
+|            5664 |  |  |  |  * MPI_File_iwrite_shared
+|            5728 |  |  |  |  * MPI_File_open
+|            5792 |  |  |  |  * MPI_File_preallocated
+|            5856 |  |  |  |  * MPI_File_read
+|           75264 |  |  |  * MPI_File_read_all
+|            5984 |  |  |  |  * MPI_File_read_all_begin
+|            6048 |  |  |  |  * MPI_File_real_all_end
+|            6112 |  |  |  |  * MPI_File_read_at
+|            6176 |  |  |  |  * MPI_File_read_at_all
+|            6240 |  |  |  |  * MPI_File_read_at_all_begin
+|            6304 |  |  |  |  * MPI_File_read_at_all_end
+|            6368 |  |  |  |  * MPI_File_read_ordered
+|            6432 |  |  |  |  * MPI_File_read_ordered_begin
+|            6496 |  |  |  |  * MPI_File_read_ordered_end
+|            6560 |  |  |  |  * MPI_File_read_shared
+|            6624 |  |  |  |  * MPI_File_seek
+|          122400 |  |  * MPI_File_seek_shared
+|           63072 |  |  |  * MPI_File_set_atomicity
+|            6816 |  |  |  |  * MPI_File_set_info
+|            6880 |  |  |  |  * MPI_File_set_size
+|            6944 |  |  |  |  * MPI_File_set_view
+|            7008 |  |  |  |  * MPI_File_sync
+|            7072 |  |  |  |  * MPI_file_write
+|            7136 |  |  |  |  * MPI_File_write_all
+|            7200 |  |  |  |  * MPI_File_write_all_begin
+|            7264 |  |  |  |  * MPI_File_write_all_end
+|            7328 |  |  |  * MPI_File_write_at_all
+|           45312 |  |  |  * MPI_File_write_at_all_begin
+|            7456 |  |  |  |  * MPI_File_write_at_all_end
+|            7520 |  |  |  |  * MPI_File_write_ordered
+|            7584 |  |  |  |  * MPI_File_write_ordered_begin
+|            7648 |  |  |  |  * MPI_File_write_ordered_end
+|            7712 |  |  |  |  * MPI_File_write_shared
+|          748288 |  |  * MPI_Finalize
+|           23712 |  |  |  * MPI_Gather
+|            7904 |  |  |  |  * mPI_Gatherv
+|            7968 |  |  |  |  * MPI_Get
+|           66048 |  |  |  * MPI_Graph_create
+|            8096 |  |  |  |  * MPI_Group_difference
+|            8160 |  |  |  |  * MPI_Group_excl
+|            8224 |  |  |  |  * MPI_Group_ free
+|            8288 |  |  |  |  * MPI_Group_incl
+|            8352 |  |  |  |  * MPI_Group_intersection
+|            8416 |  |  |  |  * MPI_Group_range_excl
+|            8480 |  |  |  |  * MPI_Group_range_incl
+|          116064 |  |  |  * MPI_Group_union
+|            8608 |  |  |  |  * MPI_Ibsend
+|            8672 |  |  |  |  * MPI_Init
+|            8736 |  |  |  |  * MPI_Init_thread
+|            8800 |  |  |  |  * MPI_Intercomm_create
+|            8864 |  |  |  |  * MPI_Intercomm_merge
+|            8928 |  |  |  |  * MPI_Irecv
+|            8992 |  |  |  |  * MPI_Irsend
+|            9056 |  |  |  |  * MPI_Isend
+|            9120 |  |  |  |  * MPI_Issend
+|            9184 |  |  |  |  * MPI_Probe
+|            9248 |  |  |  |  * MPI_Put
+|            9312 |  |  |  |  * MPI_Recv
+|           47520 |  |  |  * MPI_Recv_init
+|            9440 |  |  |  |  * MPI_Reduce
+|            9504 |  |  |  |  * MPI_Reduce_scatter
+|            9568 |  |  |  |  * MPI_Request_free
+|            9632 |  |  |  |  * MPI_Rsend
+|           99840 |  |  |  * MPI_Rsend_init
+|            9760 |  |  |  |  * MPI_Scan
+|            9824 |  |  |  |  * MPI_Scatter
+|            9888 |  |  |  |  * MPI_Scatterv
+|            9952 |  |  |  |  * MPI_Send
+|           10016 |  |  |  |  * MPI_Send_init
+|           10080 |  |  |  |  * MPI_Sendrecv
+|           10144 |  |  |  |  * MPI_Sendrecv_replace
+|           10208 |  |  |  |  * MPI_Ssend
+|           10272 |  |  |  |  * MPI_Ssend_init
+|           20736 |  |  |  * MPI_Start
+|           10400 |  |  |  |  * MPI_Startall
+|           74592 |  |  |  * MPI_Test
+|           10528 |  |  |  |  * MPI_Testall
+|           10592 |  |  |  |  * MPI_Testany
+|           10656 |  |  |  |  * MPI_Testsome
+|           10720 |  |  |  |  * MPI_Wait
+|           10784 |  |  |  |  * MPI_Waitall
+|           10848 |  |  |  |  * MPI_Waitany
+|          135168 |  |  |  * MPI_Waitsome
+|           10976 |  |  |  |  * MPI_Win_complete
+|           11040 |  |  |  |  * MPI_Win_create
+|           11104 |  |  |  |  * MPI_Win_fence
+|           11168 |  |  |  |  * MPI_Win_free
+|           11232 |  |  |  |  * MPI_Win_lock
+|           11296 |  |  |  |  * MPI_Win_post
+|           11360 |  |  |  |  * MPI_Win_start
+|           11424 |  |  |  |  * MPI_Win_test
+|           11488 |  |  |  |  * MPI_Win_unlock
+|           11552 |  |  |  |  * MPI_Win_wait
+|           11616 |  |  |  |  * PARALLEL
+|           47104 |  |  |  * driver
+|           11744 |  |  |  |  * task_init
+|           11808 |  |  |  |  * bcast_init
+|           11872 |  |  |  |  * barriere_sync
+|          109728 |  |  |  * read_input
+|           12000 |  |  |  |  * bcast_real
+|           12064 |  |  |  |  * decomp
+|           12128 |  |  |  |  * inner_auto
+|           12192 |  |  |  |  * inner
+|           12256 |  |  |  |  * initialize
+|           12320 |  |  |  |  * initxs
+|           12384 |  |  |  |  * initsnc
+|           12448 |  |  |  |  * octant
+|           12512 |  |  * initgeom
+|          568096 |  |  * timers
+|          142560 |  |  |  * its=1                    
+|           12704 |  |  |  |  * source
+|           12768 |  |  |  |  * sweep
+|           12832 |  |  |  |  * rcv_real
+|           12896 |  |  |  |  * snd_real
+|           12960 |  |  |  |  * global_init_sum
+|           13024 |  |  |  |  * flux_err
+|           13088 |  |  |  |  * global_real_max
+|           13152 |  |  |  |  * its=2                        
+|           13216 |  |  |  |  * its=3                        
+|           13280 |  |  |  |  * its=4                        
+|           40224 |  |  |  * its=5                        
+|           13408 |  |  |  |  * its=6                        
+|           13472 |  |  |  |  * its=7                        
+|          110080 |  |  |  * its=8                        
+|           13600 |  |  |  |  * its=9                        
+|           13664 |  |  |  |  * its=10                        
+|           13728 |  |  |  |  * its=11                       
+|           13792 |  |  |  |  * its=12                        
+|           13856 |  |  |  |  * global_real_sum
+|           13920 |  |  |  |  * task_end
+|           13984 |  |  |  |  * UNKNOWN
+|          187616 |  |  |  * TRACING
+|           14112 |  |  |  |  * MPI_Accumulate
+|           14176 |  |  |  |  * MPI_Allgather
+|           14240 |  |  |  |  * MPI_Allgatherv
+|           14304 |  |  |  |  * MPI_Allreduce
+|           14368 |  |  |  |  * MPI_Alltoall
+|           14432 |  |  |  |  * MPI_Alltoallv
+|           14496 |  |  |  |  * MPI_Alltoallw
+|           14560 |  |  |  |  * MPI_Barrier
+|           14624 |  |  |  |  * MPI_Bcast
+|           14688 |  |  |  |  * MPI_Bsend
+|           14752 |  |  |  |  * MPI_Bsend_init
+|           14816 |  |  |  |  * MPI_Cancel
+|           75040 |  |  |  * MPI_Cart_create
+|           14944 |  |  |  |  * MPI_Comm_create
+|           15008 |  |  |  |  * MPI_Comm_dup
+|           15072 |  |  |  |  * MPI_Comm_free
+|           15136 |  |  |  |  * MPI_Comm_group
+|          949760 |  |  * MPI_Comm_remote_group
+|           30592 |  |  |  * MPI_Comm_split
+|           15328 |  |  |  |  * MPI_Exscan
+|          109088 |  |  |  * MPI_File_close
+|           15456 |  |  |  |  * MPI_File_delete
+|           15520 |  |  |  |  * MPI_File_get_amode
+|           15584 |  |  |  |  * MPI_File_get_atomicity
+|           15648 |  |  |  |  * MPI_File_get_byte_offset
+|           15712 |  |  |  |  * MPI_File_get_group
+|           15776 |  |  |  |  * MPI_File_get_info
+|          194304 |  |  |  * MPI_File_get_position
+|           15904 |  |  |  |  * MPI_File_get_position_shared
+|           15968 |  |  |  |  * MPI_File_get_size
+|           16032 |  |  |  |  * MPI_File_get_type_extent
+|           16096 |  |  |  |  * MPI_File_get_view
+|           16160 |  |  |  |  * MPI_File_iread
+|           16224 |  |  |  |  * MPI_File_iread_at
+|           16288 |  |  |  |  * MPI_File_iread_shared
+|           16352 |  |  |  |  * MPI_File_iwrite
+|           16416 |  |  |  |  * MPI_File_iwrite_at
+|           16480 |  |  |  |  * MPI_File_iwrite_shared
+|           16544 |  |  |  |  * MPI_File_open
+|           66816 |  |  |  * MPI_File_preallocated
+|           16672 |  |  |  |  * MPI_File_read
+|           16736 |  |  |  |  * MPI_File_read_all
+|           16800 |  |  |  |  * MPI_File_read_all_begin
+|          154080 |  |  |  * MPI_File_real_all_end
+|           16928 |  |  |  |  * MPI_File_read_at
+|           16992 |  |  |  |  * MPI_File_read_at_all
+|           17056 |  |  |  |  * MPI_File_read_at_all_begin
+|           17120 |  |  |  |  * MPI_File_read_at_all_end
+|           17184 |  |  |  |  * MPI_File_read_ordered
+|           17248 |  |  |  |  * MPI_File_read_ordered_begin
+|           17312 |  |  |  |  * MPI_File_read_ordered_end
+|           17376 |  |  |  |  * MPI_File_read_shared
+|           17440 |  |  |  * MPI_File_seek
+|          105984 |  |  |  * MPI_File_seek_shared
+|           17568 |  |  |  |  * MPI_File_set_atomicity
+|           17632 |  |  |  |  * MPI_File_set_info
+|           17696 |  |  |  |  * MPI_File_set_size
+|           17760 |  |  |  |  * MPI_File_set_view
+|           17824 |  |  |  |  * MPI_File_sync
+|          200288 |  |  |  * MPI_file_write
+|           17952 |  |  |  |  * MPI_File_write_all
+|           18016 |  |  |  |  * MPI_File_write_all_begin
+|           18080 |  |  |  |  * MPI_File_write_all_end
+|           18144 |  |  |  |  * MPI_File_write_at_all
+|           18208 |  |  |  |  * MPI_File_write_at_all_begin
+|           18272 |  |  |  |  * MPI_File_write_at_all_end
+|           18336 |  |  |  |  * MPI_File_write_ordered
+|           18400 |  |  |  |  * MPI_File_write_ordered_begin
+|           18464 |  |  |  |  * MPI_File_write_ordered_end
+|           18528 |  |  |  |  * MPI_File_write_shared
+|           55968 |  |  |  * MPI_Finalize
+|           18656 |  |  |  |  * MPI_Gather
+|           18720 |  |  |  |  * mPI_Gatherv
+|         1105920 |  |  * MPI_Get
+|          250016 |  |  |  * MPI_Graph_create
+|           18912 |  |  |  |  * MPI_Group_difference
+|           18976 |  |  |  |  * MPI_Group_excl
+|           19040 |  |  |  |  * MPI_Group_ free
+|           19104 |  |  |  |  * MPI_Group_incl
+|           19168 |  |  |  |  * MPI_Group_intersection
+|           19232 |  |  |  |  * MPI_Group_range_excl
+|           19296 |  |  |  |  * MPI_Group_range_incl
+|           19360 |  |  |  |  * MPI_Group_union
+|           19424 |  |  |  |  * MPI_Ibsend
+|           19488 |  |  |  |  * MPI_Init
+|           19552 |  |  |  |  * MPI_Init_thread
+|           19616 |  |  |  |  * MPI_Intercomm_create
+|           99040 |  |  |  * MPI_Intercomm_merge
+|           19744 |  |  |  |  * MPI_Irecv
+|           19808 |  |  |  |  * MPI_Irsend
+|           19872 |  |  |  |  * MPI_Isend
+|           19936 |  |  |  |  * MPI_Issend
+|          202880 |  |  |  * MPI_Probe
+|           20064 |  |  |  |  * MPI_Put
+|           20128 |  |  |  |  * MPI_Recv
+|           20192 |  |  |  |  * MPI_Recv_init
+|           20256 |  |  |  |  * MPI_Reduce
+|           20320 |  |  |  |  * MPI_Reduce_scatter
+|           20384 |  |  |  |  * MPI_Request_free
+|           20448 |  |  |  |  * MPI_Rsend
+|           20512 |  |  |  |  * MPI_Rsend_init
+|           20576 |  |  |  |  * MPI_Scan
+|           41344 |  |  |  * MPI_Scatter
+|           20704 |  |  |  |  * MPI_Scatterv
+|          146720 |  |  |  * MPI_Send
+|           20832 |  |  |  |  * MPI_Send_init
+|           20896 |  |  |  |  * MPI_Sendrecv
+|           20960 |  |  |  |  * MPI_Sendrecv_replace
+|           21024 |  |  |  |  * MPI_Ssend
+|           21088 |  |  |  |  * MPI_Ssend_init
+|           21152 |  |  |  |  * MPI_Start
+|          258816 |  |  |  * MPI_Startall
+|           21280 |  |  |  |  * MPI_Test
+|           21344 |  |  |  |  * MPI_Testall
+|           21408 |  |  |  |  * MPI_Testany
+|           21472 |  |  |  |  * MPI_Testsome
+|           21536 |  |  |  |  * MPI_Wait
+|           21600 |  |  |  |  * MPI_Waitall
+|           21664 |  |  |  |  * MPI_Waitany
+|           21728 |  |  |  |  * MPI_Waitsome
+|           21792 |  |  |  |  * MPI_Win_complete
+|           21856 |  |  |  |  * MPI_Win_create
+|           21920 |  |  |  |  * MPI_Win_fence
+|           88320 |  |  |  * MPI_Win_free
+|           22048 |  |  |  |  * MPI_Win_lock
+|           22112 |  |  |  |  * MPI_Win_post
+|           22176 |  |  |  |  * MPI_Win_start
+|           44544 |  |  * MPI_Win_test
+|           22304 |  |  |  * MPI_Win_unlock

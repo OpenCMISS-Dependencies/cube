@@ -1,0 +1,81 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+TEMPLATE_DIR="@abs_srcdir@"
+TEMPLATE_CUBE="$TEMPLATE_DIR/template.cube"
+SCOUT2_SPEC="$TEMPLATE_DIR/../../examples/tools/ReMap2/scout2.spec"
+GHOST_SPEC="$TEMPLATE_DIR/../../examples/tools/ReMap2/ghost.spec"
+VOID_SPEC="$TEMPLATE_DIR/../../examples/tools/ReMap2/void.spec"
+
+echo "##########################################################################"
+echo "# Run test 29  : Check the tool \"cube_remap2\" with scout2.spec "
+echo "#"
+echo "##########################################################################"
+mkdir -p tests
+cd tests
+echo "=====> Remap example3.cubex using scout2.spec file and -s -d"
+../cube_remap2 -r $SCOUT2_SPEC -s -d -o remap example3.cubex
+result1=$?
+echo "=====> Compare result with saved template using cube_cmp"
+../cube_cmp remap.cubex $TEMPLATE_CUBE
+result2=$?
+
+echo  "=====> Creation of the cube to test remapper with ghost metrics..."
+../cube_self_test3_6
+echo "done."
+result3=$?
+
+echo "=====> Remap example_ghost4remap.cubex using ghost.spec file and -d"
+../cube_remap2 -r $GHOST_SPEC -d -o remap2 example_ghost4remap.cubex
+result4=$?
+
+
+echo "=====> Compare result with previosly created file "
+../cube_cmp remap2.cubex example_ghost.cubex
+result5=$?
+
+
+echo "=====> Remap example_ghost4remap.cubex using void.spec file"
+../cube_remap2 -r $VOID_SPEC -o file-bar example_ghost4remap.cubex
+result6=$?#
+#
+echo "=====> Remap example_ghost4remap.cubex using void.spec file and deactivate exp1"
+TEST_EXP1=false ../cube_remap2 -r $VOID_SPEC -d -o file-exp1 example_ghost4remap.cubex
+result7=$?
+#
+echo "=====> Remap example_ghost4remap.cubex using void.spec file and deactivate exp2"
+TEST_EXP2=false ../cube_remap2 -r $VOID_SPEC -d -o  file-exp2 example_ghost4remap.cubex
+result8=$?
+
+#
+#echo "=====> Compare result with previosly created file (exp1 vs derived) "
+#TEST_EXP1=false ../cube_cmp file-exp1.cubex file-bar.cubex
+#result9=$?
+#
+#echo "=====> Compare result with previosly created file (exp2 vs derived) "
+#TEST_EXP2=false ../cube_cmp file-exp2.cubex file-bar.cubex
+#result10=$?
+
+
+
+
+if [[ $result1 -ne 0 || $result2 -ne 0 || $result3 -ne 0 || $result4 -ne 0 || $result5 -ne 0 || $result6 -ne 0 || $result7 -ne 0 || $result8 -ne 0 || $result9 -ne 0 || $result10 -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above for more details."
+exit -1
+fi

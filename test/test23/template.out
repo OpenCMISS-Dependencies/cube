@@ -1,0 +1,6 @@
+ done.
+ bl  type       max_tbc          time       % region
+      ANY       1995907    3475200.00  100.00 (summary) ALL
+      MPI       1791571    3015584.00   86.77 (summary) MPI
+      USR        180264     407904.00   11.74 (summary) USR
+      COM         12192      26272.00    0.76 (summary) COM

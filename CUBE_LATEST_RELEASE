@@ -1,0 +1,23 @@
+Name: CUBE
+Version: 4.3.4
+Notes:
+    - Various bug fixes in library and GUI.
+    - CUBE_DEBUG and CUBEPL_VERBOSE_METRICS set CubePL engine into verbose mode. 
+      See installation documentation.
+    - Added support for multiple plugin search directories, via env variable and via GUI setting.
+    - Allow to specify colors of the selected item in the tree panel of a Cube GUI.
+    - Source code viewer allows search within the displayed text. 
+    - Enhanced the start windows ot the Cube GUI. 
+    - Report uset Qt version in the "About" dialog of a GUI.
+    - Improved the Qt detection steps while the configure time.
+    - Cube tools do not append wrongly the .cubex extension.
+    - Fixes in CubePL engine: 
+      -- support for metric::call::<uniq_name>;
+      -- fixed seg fault if the metric "rowwise=false";
+      -- fixed seg fault while metric::set of unknown metric;
+      -- reference to a metric in CubePL Init section doesn't crash anymore;
+      -- "?" within a regex is not ignored anymore.
+    - Remapper doesn't unhide "omp" metrics, if no OpenMp region detected, but -s option 
+    is provided.
+    - Fixed a seg fault if Cube tries to read a non-Cube file, like .txt.
+    - Provide examples of typical cube files.

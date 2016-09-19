@@ -1,0 +1,359 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.score-p.org/                                    ##
+##  SCALASCA    http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2015                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+CUBE_EXTENSION="cubex"
+
+
+prefix="@prefix@"
+datadir="@datarootdir@"
+exec_prefix="@exec_prefix@"
+
+target="@target@"
+
+source @bindir@/cube-config-frontend
+source @bindir@/cube-config-backend
+
+
+VERSION="@CUBE_BUILD_VERSION@"
+REVISION="@CUBE_BUILD_REVISION@"
+CODENAME="@CUBE_BUILD_CODENAME@"
+
+NAME="@PACKAGE@"
+
+PATCH=
+
+b_target="@backend_targets@"
+f_target="@frontend_targets@"
+if test -d "@libdir@/mic"; then
+  m_target="mic"
+fi
+
+
+
+function print_summary
+{
+cat $datadir/$NAME/cube.summary
+}
+
+function run_cases
+{
+    case "$1" in
+    --config-summary)
+        print_summary
+        ;;
+    --features=targets)
+	if test "x$f_target" != "x"; then 
+		echo "$f_target"
+	fi
+	if test "x$b_target" != "x"; then 
+		echo "$b_target"
+	fi
+	if test "x$m_target" != "x"; then 
+		echo "$m_target"
+	fi
+	;;
+    --writer-cppflags)
+        echo -n "$BACKEND_CUBEW_CXXFLAGS"
+        ;;
+    --writer-ldflags)
+        if test "x$2" = "x--backend" || test "x$2" = "x--target=backend"; then
+            echo -n "-L@libdir@@backend_suffix@"
+        elif test "x$2" = "x--target=mic"; then
+	    if test -d "@libdir@/mic"; then
+                echo -n "-L@libdir@/mic"
+	    else 
+		echo "Error: No MIC build is found"
+	    fi
+	else
+            echo -n "-L@libdir@"
+        fi
+        ;;
+    --writer-libs)
+        echo -n "$BACKEND_CUBEW_LIBRARY"
+        ;;
+
+    --reader-cppflags)
+        echo -n "$CUBE_CXXFLAGS"
+        ;;
+    --reader-ldflags)
+        # reader gets build on the frontend only.
+        echo -n "$CUBE_LDFLAGS"
+        ;;
+    --reader-libs)
+        echo -n "$CUBE_LIBRARY "
+        ;;
+    --reader-cxx)
+        echo -n "$FRONTEND_CXX"
+        ;;
+    --interface-version)
+        echo -n "$LIBRARY_INTERFACE_VERSION"
+        ;;
+
+    --name)
+#undocumented option, used in configurations scripts to check presence of previous cube installations
+        echo -n "CUBE" 
+        ;;
+    --version)
+        echo -n "$NAME $VERSION $CODENAME (rev. $REVISION) " 
+        ;;
+    --cube-extension)
+        echo -n "$CUBE_EXTENSION"
+        ;;
+
+    --gui-dir)
+        echo -n "$GUI_DIR"
+        ;;
+    --gui-include-path)
+        echo -n "$GUI_HEADERS_DIR"
+        ;;
+    --gui-cxxflags)
+        echo -n "$GUI_CXXFLAGS"
+        ;;
+    --gui-ldflags)
+        echo -n "$GUI_LDFLAGS"
+        ;;
+    --gui-library)
+        echo -n "$GUI_LIBRARY"
+        ;;
+    --gui-shared-library)
+        echo -n "$GUI_SHARED_LIBRARY"
+        ;;
+    --gui-shared-ldflags)
+        echo -n "$GUI_SHLDFLAGS"
+        ;;
+
+    --cube-dir)
+        echo -n "$CUBE_LIBS_DIR"
+        ;;
+    --cube-include-path)
+        echo -n "$CUBE_HEADERS_DIR"
+        ;;
+    --cube-cxxflags)
+        echo -n "$CUBE_CXXFLAGS"
+        ;;
+    --cube-ldflags)
+        echo -n "$CUBE_LDFLAGS"
+        ;;
+    --cube-library)
+        echo -n "$CUBE_LIBRARY"
+        ;;
+    --cube-shared-library)
+        echo -n "$CUBE_SHARED_LIBRARY"
+        ;;
+    --cube-shared-ldflags)
+        echo -n "$CUBE_SHLDFLAGS"
+        ;;
+
+
+    --cubew-dir)
+        echo -n "$BACKEND_CUBEW_LIBS_DIR"
+        ;;
+    --cubew-cxxflags)
+        echo -n "$BACKEND_CUBEW_CXXFLAGS"
+        ;;
+    --cubew-ldflags)
+        echo -n "$BACKEND_CUBEW_LDFLAGS"
+        ;;
+    --cubew-library)
+        echo -n "$BACKEND_CUBEW_LIBRARY"
+        ;;
+    --cubew-shared-library)
+        echo -n "$BACKEND_CUBEW_SHARED_LIBRARY"
+        ;;
+    --cubew-shared-ldflags)
+        echo -n "$BACKEND_CUBEW_SHLDFLAGS"
+        ;;
+
+        
+###################################################################        
+        
+        
+        
+    --backend-cubew-dir)
+        echo -n "$BACKEND_CUBEW_LIBS_DIR"
+        ;;
+    --backend-cubew-cxxflags)
+        echo -n "$BACKEND_CUBEW_CXXFLAGS"
+        ;;
+    --backend-cubew-ldlib)
+        echo -n "$BACKEND_CUBEW_LD_LIB"
+        ;;
+    --backend-cubew-ldflags)
+        echo -n "$BACKEND_CUBEW_LDFLAGS"
+        ;;
+    --backend-cubew-library)
+        echo -n "$BACKEND_CUBEW_LIBRARY"
+        ;;
+    --backend-cubew-writer-library)
+        echo -n "$BACKEND_CUBEW_WRITER_LIBRARY"
+        ;;
+    --backend-cubew-shared-library)
+        echo -n "$BACKEND_CUBEW_SHARED_LIBRARY"
+        ;;
+    --backend-cubew-shared-ldflags)
+        echo -n "$BACKEND_CUBEW_SHLDFLAGS"
+        ;;
+
+
+    --frontend-cubew-dir)
+        echo -n "$FRONTEND_CUBEW_LIBS_DIR"
+        ;;
+    --frontend-cubew-cxxflags)
+        echo -n "$FRONTEND_CUBEW_CXXFLAGS"
+        ;;
+    --frontend-cubew-ldlib)
+        echo -n "$FRONTEND_CUBEW_LD_LIB"
+        ;;
+    --frontend-cubew-ldflags)
+        echo -n "$FRONTEND_CUBEW_LDFLAGS"
+        ;;
+    --frontend-cubew-library)
+        echo -n "$FRONTEND_CUBEW_LIBRARY"
+        ;;
+    --frontend-cubew-writer-library)
+        echo -n "$FRONTEND_CUBEW_WRITER_LIBRARY"
+        ;;
+    --frontend-cubew-shared-library)
+        echo -n "$FRONTEND_CUBEW_SHARED_LIBRARY"
+        ;;
+    --frontend-cubew-shared-ldflags)
+        echo -n "$FRONTEND_CUBEW_SHLDFLAGS"
+        ;;
+
+    --frontend-app-cubew-ldflags)
+        echo -n "$FRONTEND_APP_CUBEW_LDFLAGS"
+        ;;
+    --frontend-app-cube-ldflags)
+        echo -n "$FRONTEND_APP_CUBE_LDFLAGS"
+        ;;
+    --frontend-app-cubew-cxxflags)
+        echo -n "$FRONTEND_APP_CUBEW_CXXFLAGS"
+        ;;
+    --frontend-app-cube-cxxflags)
+        echo -n "$FRONTEND_APP_CUBE_CXXFLAGS"
+        ;;
+    --frontend-add-ldflags)
+        echo -n "$FRONTEND_APP_ADD_LDFLAGS"
+        ;;
+    --frontend-add-cxxflags)
+        echo -n "$FRONTEND_APP_ADD_CXXFLAGS"
+        ;;
+
+    --backend-app-cubew-ldflags)
+        echo -n "$BACKEND_APP_CUBEW_LDFLAGS"
+        ;;
+    --backend-app-cube-ldflags)
+        echo -n "$BACKEND_APP_CUBE_LDFLAGS"
+        ;;
+    --backend-app-cubew-cxxflags)
+        echo -n "$BACKEND_APP_CUBEW_CXXFLAGS"
+        ;;
+    --backend-app-cube-cxxflags)
+        echo -n "$BACKEND_APP_CUBE_CXXFLAGS"
+        ;;
+    --backend-add-ldflags)
+        echo -n "$BACKEND_APP_ADD_LDFLAGS"
+        ;;
+    --backend-add-cxxflags)
+        echo -n "$BACKEND_APP_ADD_CXXFLAGS"
+        ;;
+
+    --app-cubew-ldflags)
+        echo -n "$BACKEND_APP_CUBEW_LDFLAGS"
+        ;;
+    --app-cube-ldflags)
+        echo -n "$BACKEND_APP_CUBE_LDFLAGS"
+        ;;
+    --app-cubew-cxxflags)
+        echo -n "$BACKEND_APP_CUBEW_CXXFLAGS"
+        ;;
+    --app-cube-cxxflags)
+        echo -n "$BACKEND_APP_CUBE_CXXFLAGS"
+        ;;
+    --add-ldflags)
+        echo -n "$BACKEND_APP_ADD_LDFLAGS"
+        ;;
+    --app-cxxflags)
+        echo -n "$BACKEND_APP_ADD_CXXFLAGS"
+        ;;
+
+    --cubeqt-dir)
+        echo -n "$CUBE_FOR_QT_INCLUDE"
+        ;;
+    --cubeqt-lib)
+        echo -n "$CUBE_FOR_QT_LIBRARY"
+        ;;
+    --cube-remap)
+        echo -n "$CUBE_REMAPPER"
+        ;;
+    --cube-merge)
+        echo -n "$CUBE_MERGE"
+        ;;
+    --cube-score)
+        echo -n "$CUBE_SCORE"
+        ;;
+    --cube-gui)
+        echo -n "$CUBE_GUI"
+        ;;
+    "" | --help)
+	echo "cube-config  COMMAND [OPTION] ..."
+	echo "Commands:"
+	echo "      --config-summary          : Shows the configure summary of the CUBE package"	
+	echo "      --version                 : Returns the version of CUBE"
+	echo "      --cube-extension          : Returns the extension for the CUBE report (or its anchor file)"
+	echo "      --cube-dir                : Returns the directory with the CUBE library"
+	echo "      --cube-include-path       : Returns path to CUBE headers for usage in .pro file"
+	echo "      --cube-cxxflags           : Returns compilation flags for CUBE library"
+	echo "      --cube-ldflags            : Returns linking flags for CUBE library"
+	echo "      --cube-library            : Returns full path to the CUBE library"
+	echo "      --cube-shared-ldflags     : Returns flags to create CUBE library as a shared object"
+	echo "      --cube-shared-library     : Returns full path to the CUBE shared library "
+	echo "                                  (it might be missing, if not created during installation)"	
+	echo "      --cubew-dir               : Returns the directory with the CUBE C-writer "
+	echo "      --cubew-cxxflags          : Returns compilation flags for CUBE C-writer "
+	echo "      --cubew-ldflags           : Returns linking flags for CUBE C-writer "
+	echo "      --cubew-library           : Returns full path to the CUBE C-writer"
+	echo "      --cubew-shared-ldflags    : Returns flags to create CUBE C-writer  as a shared object"
+	echo "      --cubew-shared-library    : Returns full path to the CUBE shared C-writer"	
+	echo "                                  (it might be missing, if not created during installation)"	
+	echo "      --gui-cxxflags            : Returns compilation flags for GUI plugin development"
+	echo "      --gui-ldflags             : Returns linking flags for GUI plugin development"
+	echo "      --gui-include-path        : Returns path to GUI headers for usage in .pro file"
+	echo "      --gui-library             : Returns full path to the GUI plugin development"
+	echo "      --gui-shared-ldflags      : Returns flags to create GUI plugin development as a shared object"
+	echo "      --gui-shared-library      : Returns full path to the  GUI plugin development"
+	echo "                                  (it might be missing, if not created during installation)"	
+	echo "Options:"
+	echo "      --features <FEATURE-CATEGORY>"
+	echo "                                :prints available features selected by <FEATURE-CATEGORY>. "
+	echo "                                  Available feature categories:"
+	echo "                                   * targets"
+	echo "      --target=<TARGET>"
+	echo "               displays the requested information for the given <TARGET>".
+	echo "                                  Available <TARGETS> might be:"
+	echo "                                   * frontend"
+	echo "                                   * backend"
+	echo "                                   * mic"
+	echo "      --backend    equivalent to '--target=backend' (deprecated)"
+	;;
+   esac
+}
+
+
+run_cases $@
+
+
+

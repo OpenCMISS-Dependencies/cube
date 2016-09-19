@@ -1,0 +1,44 @@
+#!/bin/bash
+
+##*************************************************************************##
+##  CUBE        http://www.score-p.org/                                    ##
+##  SCALASCA    http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2015                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+CUBES_DIR="@abs_srcdir@"
+TEMPLATE_DATA1="$CUBES_DIR/example5.data"
+
+echo "######################################################"
+echo "# Run test 5 : Check the big cube creation by C library. "
+echo "#                                        "         
+echo "######################################################"
+mkdir -p tests
+cd tests
+echo "=====> Create 3(metrics) x 100 (callpaths) x 5000000(locations) cube (~12Gb)..."
+# ../cube_self_test5_0
+result0=$?
+echo "=====> Dumping some values from example5.cubex" 
+../cube_dump -m Uniq_name1 -c 99 -t 499998 example5.cubex -s gnuplot > example5.out
+result1=$?
+echo "=====> Comparing results with stored values" 
+diff example5.out  $TEMPLATE_DATA1
+result2=$?
+cd ..
+if [[ $result0 -ne 0 || 
+      $result1 -ne 0 || 
+      $result2 -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above for more details."
+exit -1 
+fi
+

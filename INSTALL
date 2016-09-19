@@ -1,0 +1,154 @@
+To see available configuration options run:
+   ./configure --help=recursive
+
+
+To install Cube just run:
+   ./configure --prefix=<install_dir>
+   make
+   make install
+
+After installing you might add <install_dir>/bin to your path:
+   export PATH=$PATH:<install_dir>/bin
+or
+   setenv PATH=$PATH <install_dir>/bin
+
+"<install_dir>/bin/cube-config"  provides a list options for easy usage of 
+cube libraries in third party applications. 
+
+To see available options invoke "<install_dir>/bin/cube-config --help"
+
+
+Required tools/libraries
+
+To install and use all components of the Cube package, the following software 
+is needed:
+
+    GNU make
+    zlib
+    Qt4 (>=4.6.0, for graphical user interface) or Qt5
+
+To enable different additional functionality of a Cube framework following 
+software is recommended:
+
+    Java compiler
+    DBUS development package 
+
+
+
+
+NOTICE:
+
+Cube GUI requires an installed copy of the Qt development kit. Cube GUI must
+ be built with the same compiler used to build Qt.
+
+The "configure" script tries to determine if the compilers are different and
+gives a message in the case they are not. Nevertheless, it tries to build
+the GUI with the selected - or automatically detected - compiler and 
+"default" Qt specifications.
+
+If the script fails, one can specify the proper compiler suite for the 
+front-end compilation by setting an option 
+--with-frontend-compiler-suite=[suite] 
+and setting a proper Qt specification via "--with-qt-specs".
+
+One can specify which Qt library will be used, with the option 
+--with-qt=[PATH to Qt'q qmake tool].
+
+For example:
+  ./configure --with-frontend-compiler-suite=gcc CXXFLAGS_FOR_BUILD="-m64" \
+               CFLAGS_FOR_BUILD="-m64" --with-qt-specs=linux-gcc
+
+To see more "configure" options, run:
+   ./configure --help=recursive
+   
+
+Platform-specific instructions
+******************************
+
+Mac OS X
+--------
+
+   Cube needs at least Mac OS X 10.7. There are some options when compiling it:
+   - Using G++ wrappers (default) versus Clang, 
+   - Gnu Standard C++ Library (libstdc++) versus Clang's Lib C++ (libc++). 
+
+IMPORTANT: There is no default on C++ library: You HAVE to choose one, 
+otherwise you will have error messages of "flat namespace" when opening a file.
+
+    To build Cube with g++ wrapper and libstdc++:
+
+./configure [normal configure options] \
+    CXXFLAGS=\"-stdlib=libstdc++" LDFLAGS=\"-stdlib=libstdc++"
+
+
+    To build Cube with clang and libc++:
+
+./configure [normal configure options] \
+    --with-nocross-compiler-suite=clang --with-qt-specs=macx-clang \
+    CXXFLAGS=\"-stdlib=libc++" LDFLAGS=\"-stdlib=libc++"
+
+    Note: In order to use g++ wrappers with libc++, the QT's minimum version
+is 5.4.
+
+
+Intel MIC
+---------
+   Building Cube for the Intel MIC platform requires some extra care, and in
+some cases two installations into the same location.  Therefore, we strongly
+recommend to strictly follow the procedure as described below.
+  
+  1. Ensure that Intel compilers are installed and available in $PATH, and
+     that the Intel Manycore Platform Software Stack (MPSS) is installed.
+  
+  2. Configure Cube to use the MIC platform:
+  
+       ./configure --enable-platform-mic [other options, e.g., '--prefix']
+  
+  3. Build and install:
+  
+       make; make install
+
+   On non-cross compiling systems (e.g., typical Linux clusters), that's it.
+On cross-compiling systems (e.g., Cray XC30 with Xeon Phi daughter board), a
+second installation of Cube *on top* of the just installed one is required to
+provide a single installation serving login nodes, compute nodes, and MIC:
+
+  4. Remove MIC program binaries, object files, and configure-generated files
+     from the source code directory:
+
+       make distclean
+  
+  5. Reconfigure for login/compute nodes using *identical directory options*
+     (e.g., '--prefix' or '--bindir') as in step 2:
+  
+       ./configure [other options as usid in step 2]
+  
+     This will automatically detect the already existing native MIC build and
+     enable the required support in the login node tools.
+  
+  6. Build and install:
+                          
+       make; make install
+                          
+   Note that this approach also works with VPATH builds (even with with two
+separate build directories) as long as the same options defining directory
+locations are passed in steps 2 and 5.
+  
+
+To use Cube C writer library on MIC use linking flags returned by 
+"[prefix]/bin/cube-config --writer-ldflags --target=mic"
+
+
+   
+Power/AIX
+---------
+Some parts of CUBE code use operator "dynamic_cast<...>".
+
+According to  http://www-01.ibm.com/support/docview.wss?uid=swg21007500 , 
+the dynamic_cast operator will always return NULL if the compiler isn't 
+instructed to generate the necessary dynamic type information. 
+
+Cube build system tries to detect AIX and in case of success adds 
+"-qrtti=dynamiccast" to CXXFLAGS. 
+Should it happen that it fails to detect AIX please configure Cube on 
+POWER/AIX manually with 'CXXFLAGS="-qrtti=dynamiccast"'. 

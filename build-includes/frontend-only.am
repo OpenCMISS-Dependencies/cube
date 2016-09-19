@@ -1,0 +1,124 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+
+include ../examples/Makefile.cubew.examples.frontend.inc.am
+include ../examples/Makefile.cube.examples.inc.am
+include ../examples/Makefile.gui-plugin.examples.inc.am
+
+if WITH_CPP_LIB
+
+include ../src/cube/Makefile.cube.inc.am
+
+endif
+
+
+
+if WITH_GUI
+
+include ../src/GUI-qt/Makefile.gui-qt4.inc.am
+
+
+if WITH_GUI_PLUGIN_LAUNCH
+include ../src/GUI-qt/plugins/launch/Makefile.launch-plugin.inc.am
+endif
+
+include ../src/GUI-qt/plugins/SystemTopology/Makefile.system-topology.inc.am
+include ../src/GUI-qt/plugins/SystemBoxPlot/Makefile.system-boxplot.inc.am
+
+if WITH_GUI_PLUGIN_GRAPHWIDGET_COMMON
+include ../src/GUI-qt/plugins/Graphwidget-common/Makefile.GraphWidgetCommon-plugin.inc.am
+endif
+
+if WITH_GUI_PLUGIN_HEATMAP
+include ../src/GUI-qt/plugins/Heatmap/Makefile.heatmap-plugin.inc.am
+endif
+
+if WITH_GUI_PLUGIN_BARPLOT
+include ../src/GUI-qt/plugins/Barplot/Makefile.barplot-plugin.inc.am
+endif
+
+if WITH_GUI_PLUGIN_SOURCE_EDITOR
+include ../src/GUI-qt/plugins/SourceCodeEditor/Makefile.source-plugin.inc.am
+endif
+
+if WITH_GUI_PLUGIN_STATISTICS
+include ../src/GUI-qt/plugins/Statistics/Makefile.statistics-plugin.inc.am
+endif
+
+if WITH_GUI_PLUGIN_VAMPIR
+include ../src/GUI-qt/plugins/VampirPlugin/Makefile.vampir-plugin.inc.am
+endif
+
+if WITH_GUI_PLUGIN_PARAVER
+include ../src/GUI-qt/plugins/ParaverPlugin/Makefile.paraver-plugin.inc.am
+endif
+
+if WITH_GUI_PLUGIN_ADVANCEDCM
+include ../src/GUI-qt/plugins/AdvancedColorMaps/Makefile.advancedcm-plugin.inc.am
+endif
+
+
+
+endif
+
+
+
+if WITH_TOOLS
+
+include ../src/tools/common_src/Makefile.tools.common.inc.am
+include ../src/tools/tools/0001.library/Makefile.tools.library.inc.am
+include ../src/tools/tools/0010.Exclusify/Makefile.tools.exclusify.inc.am
+include ../src/tools/tools/0011.Inclusify/Makefile.tools.inclusify.inc.am
+include ../src/tools/tools/0012.Cube4To3/Makefile.tools.cube4to3.inc.am
+include ../src/tools/tools/0013.Cube3To4/Makefile.tools.cube3to4.inc.am
+include ../src/tools/tools/0020.Clean/Makefile.tools.clean.inc.am
+include ../src/tools/tools/0021.Cmp/Makefile.tools.cmp.inc.am
+include ../src/tools/tools/0022.Cut/Makefile.tools.cut.inc.am
+include ../src/tools/tools/0023.Diff/Makefile.tools.diff.inc.am
+include ../src/tools/tools/0024.Mean/Makefile.tools.mean.inc.am
+include ../src/tools/tools/0025.Merge/Makefile.tools.merge.inc.am
+include ../src/tools/tools/0026.Score/Makefile.tools.score.inc.am
+include ../src/tools/tools/0027.Stat/Makefile.tools.stat.inc.am
+include ../src/tools/tools/0028.CallTree/Makefile.tools.calltree.inc.am
+include ../src/tools/tools/0029.Canonize/Makefile.tools.canonize.inc.am
+include ../src/tools/tools/002a.Info/Makefile.tools.info.inc.am
+include ../src/tools/tools/002b.NodeView/Makefile.tools.nodeview.inc.am
+include ../src/tools/tools/002c.Rank/Makefile.tools.rank.inc.am
+include ../src/tools/tools/002d.RegionInfo/Makefile.tools.regioninfo.inc.am
+include ../src/tools/tools/002e.Sanity/Makefile.tools.sanity.inc.am
+include ../src/tools/tools/002f.Topoassist/Makefile.tools.topoassist.inc.am
+include ../src/tools/tools/002i.Part/Makefile.tools.part.inc.am
+include ../src/tools/tools/002j.IsEmpty/Makefile.tools.isempty.inc.am
+include ../src/tools/tools/002k.Dump/Makefile.tools.dump.inc.am
+include ../src/tools/tools/002m.Derive/Makefile.tools.derive.inc.am
+include ../src/tools/tools/002n.CommonCalltree/Makefile.tools.commoncalltree.inc.am
+include ../src/tools/tools/0031.ReMap2/Makefile.tools.remap2.inc.am
+include ../src/tools/tools/0040.Tau2Cube/Makefile.tools.tau2cube4.inc.am
+include ../src/tools/tools/0050.Test/Makefile.tools.test.inc.am
+include ../vendor/common/src/utils/cstr/Makefile.inc.am
+include ../vendor/common/src/utils/exception/Makefile.inc.am
+include ../vendor/common/src/utils/io/Makefile.inc.am
+include ../vendor/common/src/utils/Makefile.inc.am
+
+
+if WITH_C_WRITER
+include ../test/Makefile.tests-frontend.inc.am
+endif
+
+endif
